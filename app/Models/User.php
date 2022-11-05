@@ -31,9 +31,17 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Profile');
     }
 
-    // public function messages() {
+    public function last_message(int $user_id) {
 
-    //     return $this->hasMany('App\Models\User');
-    // }
+        $sended = Message::all()
+        ->where('sender', $this->id)
+        ->where('receiver', $user_id);
+
+        $received = Message::all()
+        ->where('sender', $user_id)
+        ->where('receiver', $this->id);
+
+        return $sended->union($received)->sortByDesc('id')->first();
+    }
 
 }

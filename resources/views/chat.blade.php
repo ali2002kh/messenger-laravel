@@ -25,5 +25,10 @@ chat
     <textarea name='body' placeholder='type your message...'></textarea>
     <input type='submit' value="send">
 </form>
+<hr>
+<form action="{{ route('clear', $target->id) }}" method='Post'>
+    @csrf
+    <input type='submit' value="clear history">
+</form>
 
 @endsection

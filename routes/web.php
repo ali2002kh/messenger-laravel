@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
 
 Route::get('/home', [HomeController::class, 'index'])
@@ -34,3 +34,6 @@ Route::get('/chat/{target_id}', [HomeController::class, 'chat'])
 
 Route::post('/chat/{target_id}', [HomeController::class, 'send_message'])
 ->name('send_message');
+
+Route::post('/chat/{target_id}/clear', [HomeController::class, 'clear'])
+->name('clear');

@@ -16,8 +16,9 @@ class HomeController extends Controller {
 
         $user = User::find($request->session()->get('user'));
         $users = User::where('id', '!=', $user->id)->get();
+        $all_users = User::all();
 
-        return view('home', compact('user', 'users'));
+        return view('home', compact('user', 'users', 'all_users'));
     }
 
     public function chat(Request $request, int $target_id) {
@@ -56,6 +57,25 @@ class HomeController extends Controller {
         ]);
 
         $message->save();
+
+        return redirect()->route('chat', $target_id);
+    }
+
+    public function clear(Request $request, int $target_id) {
+
+        $sended = Message::all()
+        ->where('sender', $request->session()->get('user'))
+        ->where('receiver', $target_id);
+
+        $received = Message::all()
+        ->where('sender', $target_id)
+        ->where('receiver', $request->session()->get('user'));
+
+        $messages = $sended->union($received)->sortBy('id');
+        
+        foreach($messages as $m) {
+            $m->delete();
+        }
 
         return redirect()->route('chat', $target_id);
     }
