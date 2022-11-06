@@ -5,16 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
 
     public function index(Request $request) {
 
-        if (!$request->session()->get('login')) {
+        if (!Auth::check()) {
             return redirect('login_page');
         }
 
-        $user = User::find($request->session()->get('user'));
+        $user = Auth::user();
         $users = User::where('id', '!=', $user->id)->get();
         $all_users = User::all();
 
@@ -23,12 +24,12 @@ class HomeController extends Controller {
 
     public function chat(Request $request, int $target_id) {
 
-        if (!$request->session()->get('login')) {
+        if (!Auth::check()) {
             return redirect('login_page');
         }
 
         $users = User::all();
-        $user = User::find($request->session()->get('user'));
+        $user = Auth::user();
         $target = User::find($target_id);
 
         $sended = Message::all()
@@ -46,7 +47,7 @@ class HomeController extends Controller {
 
     public function send_message(Request $request, int $target_id) {
 
-        if (!$request->session()->get('login')) {
+        if (!Auth::check()) {
             return redirect('login_page');
         }
 

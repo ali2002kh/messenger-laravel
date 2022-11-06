@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -17,8 +18,7 @@ class AuthController extends Controller
         foreach ($users as $user) {
             if ($user->number == $request->get('number')) {
                 if ($user->password == $request->get('password')) {
-                    $request->session()->put('login', true);
-                    $request->session()->put('user', $user->id);
+                    Auth::login($user);
                     return redirect('home');
                 }
             }
@@ -47,15 +47,13 @@ class AuthController extends Controller
             'password' => $request->get('password2'),
         ]);
         $user->save();
-        $request->session()->put('login', true);
-        $request->session()->put('user', $user->id);
+        Auth::login($user);
         return redirect('home');
     }
 
     public function logout(Request $request) {
 
-        $request->session()->put('login', false);
-        $request->session()->put('user', null);
+        Auth::logout();
         return redirect('home');
     }
 }
