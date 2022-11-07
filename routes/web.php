@@ -37,3 +37,6 @@ Route::post('/chat/{target_id}', [HomeController::class, 'send_message'])
 
 Route::post('/chat/{target_id}/clear', [HomeController::class, 'clear'])
 ->name('clear');
+
+Route::post('/chat/{message_id}/delete-message', [HomeController::class, 'delete_message'])
+->name('delete_message');

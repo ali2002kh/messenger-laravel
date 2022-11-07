@@ -16,6 +16,10 @@ chat
 @endphp
     {{ $sender->username }}:
     {{ $m->body }}
+    <form action="{{ route('delete_message', $m->id) }}" method='Post'>
+        @csrf
+        <input type='submit' value="delete">
+    </form>
     <br>
 @endforeach
 

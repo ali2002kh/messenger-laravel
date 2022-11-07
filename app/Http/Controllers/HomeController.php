@@ -51,9 +51,11 @@ class HomeController extends Controller {
             return redirect('login_page');
         }
 
+        $user = Auth::user();
+
         $message = new Message([
             'body' => $request->get('body'),
-            'sender' => $request->session()->get('user'),
+            'sender' => $user->id,
             'receiver' => $target_id
         ]);
 
@@ -77,6 +79,15 @@ class HomeController extends Controller {
         foreach($messages as $m) {
             $m->delete();
         }
+
+        return redirect()->route('chat', $target_id);
+    }
+
+    public function delete_Message(Request $request, int $message_id) {
+
+        $message = Message::all()->find($message_id);
+        $target_id = $message->receiver;
+        $message->delete();
 
         return redirect()->route('chat', $target_id);
     }
