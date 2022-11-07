@@ -12,7 +12,7 @@ chat
 <hr>
 @foreach ($messages as $m) 
 @php
-    $sender = $users->where('id', $m->sender)->first();
+    $sender = $all_users->where('id', $m->sender)->first();
 @endphp
     {{ $sender->username }}:
     {{ $m->body }}

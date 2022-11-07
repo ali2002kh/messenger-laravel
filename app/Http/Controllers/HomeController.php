@@ -9,28 +9,16 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
 
-    public function index(Request $request) {
-
-        if (!Auth::check()) {
-            return redirect('login_page');
-        }
-
-        $user = Auth::user();
-        $users = User::where('id', '!=', $user->id)->get();
-        $all_users = User::all();
-
-        return view('home', compact('user', 'users', 'all_users'));
+    public function __construct() {
+        $this->middleware('auth');
     }
 
     public function chat(Request $request, int $target_id) {
 
-        if (!Auth::check()) {
-            return redirect('login_page');
-        }
-
-        $users = User::all();
         $user = Auth::user();
-        $target = User::find($target_id);
+        $users = User::where('id', '!=', $user->id)->get();
+        $all_users = User::all();
+        $target = User::find($target_id); 
 
         $sended = Message::all()
         ->where('sender', $user->id)
@@ -42,14 +30,19 @@ class HomeController extends Controller {
 
         $messages = $sended->union($received)->sortBy('id');
 
-        return view('chat', compact('messages', 'target', 'users'));
-    } 
+        return view('chat', compact('messages', 'target', 'all_users', 'user', 'users'));
+    }
+
+    public function index(Request $request) {
+
+        $user = Auth::user();
+        $users = User::where('id', '!=', $user->id)->get();
+        $all_users = User::all();
+
+        return view('home', compact('user', 'users', 'all_users'));
+    }
 
     public function send_message(Request $request, int $target_id) {
-
-        if (!Auth::check()) {
-            return redirect('login_page');
-        }
 
         $user = Auth::user();
 
