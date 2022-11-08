@@ -24,10 +24,10 @@ chat
 @endforeach
 
 <hr>
-<form action="{{ route('send_message', $target->id) }}" method='Post'>
+<form id="myForm" action="{{ route('send_message', $target->id) }}" method='Post'>
     @csrf
     <textarea id="txt" name='body' placeholder='type your message...'></textarea>
-    <input type='submit' value="send">
+    <input type='button' value="send" onclick="sendAndDelete()">
 </form>
 <hr>
 <form action="{{ route('clear', $target->id) }}" method='Post'>
@@ -36,17 +36,39 @@ chat
 </form>
 
 <script>
+    var txt = document.getElementById('txt')
     refresh()
-    document.getElementById('txt').addEventListener('keydown', function(e) {
+    txt.addEventListener('keyup', function(e) {
         clearInterval(interval)
         refresh()
+        localStorage.setItem('txt', txt.value)
     })
+
+    function old(v) { 
+        if (!localStorage.getItem(v)) {
+            return ""
+        } else {
+            return localStorage.getItem(v)
+        }
+    }
+
+    txt.value = old("txt")
+
     function refresh() {
         interval = setInterval(() => {
-            if (document.getElementById('txt').value == '') {
+            if (txt.value == '') {
                 location.reload()
             }
-        },10000)
+        },5000)
+    }
+
+    setTimeout(() => {
+        location.reload()
+    }, 30000);
+
+    function sendAndDelete() {
+        localStorage.removeItem('txt')
+        document.getElementById('myForm').submit()
     }
 </script>
 
