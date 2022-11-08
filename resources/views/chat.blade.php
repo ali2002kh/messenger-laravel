@@ -42,6 +42,8 @@ chat
         clearInterval(interval)
         refresh()
         localStorage.setItem('txt', txt.value)
+        var cursorPosition = txt.selectionStart
+        localStorage.setItem('cursor', cursorPosition)
     })
 
     function old(v) { 
@@ -52,19 +54,21 @@ chat
         }
     }
 
+    txt.focus()
     txt.value = old("txt")
+    txt.selectionEnd = localStorage.getItem('cursor')
 
     function refresh() {
         interval = setInterval(() => {
             if (txt.value == '') {
                 location.reload()
             }
-        },5000)
+        },3000)
     }
 
     setTimeout(() => {
         location.reload()
-    }, 30000);
+    }, 5000);
 
     function sendAndDelete() {
         localStorage.removeItem('txt')
