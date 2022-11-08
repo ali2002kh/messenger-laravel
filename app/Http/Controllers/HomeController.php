@@ -60,12 +60,12 @@ class HomeController extends Controller {
     public function clear(Request $request, int $target_id) {
 
         $sended = Message::all()
-        ->where('sender', $request->session()->get('user'))
+        ->where('sender', auth()->user()->id)
         ->where('receiver', $target_id);
 
         $received = Message::all()
         ->where('sender', $target_id)
-        ->where('receiver', $request->session()->get('user'));
+        ->where('receiver', auth()->user()->id);
 
         $messages = $sended->union($received)->sortBy('id');
         
