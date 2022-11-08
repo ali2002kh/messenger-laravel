@@ -29,5 +29,14 @@ home
 <hr>
 @endforeach
 
+<script>
+    refresh()
+    function refresh() {
+        interval = setInterval(() => {
+            location.reload()
+        },5000)
+    }
+</script>
+
 
 @endsection

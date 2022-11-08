@@ -26,7 +26,7 @@ chat
 <hr>
 <form action="{{ route('send_message', $target->id) }}" method='Post'>
     @csrf
-    <textarea name='body' placeholder='type your message...'></textarea>
+    <textarea id="txt" name='body' placeholder='type your message...'></textarea>
     <input type='submit' value="send">
 </form>
 <hr>
@@ -34,5 +34,20 @@ chat
     @csrf
     <input type='submit' value="clear history">
 </form>
+
+<script>
+    refresh()
+    document.getElementById('txt').addEventListener('keydown', function(e) {
+        clearInterval(interval)
+        refresh()
+    })
+    function refresh() {
+        interval = setInterval(() => {
+            if (document.getElementById('txt').value == '') {
+                location.reload()
+            }
+        },10000)
+    }
+</script>
 
 @endsection
