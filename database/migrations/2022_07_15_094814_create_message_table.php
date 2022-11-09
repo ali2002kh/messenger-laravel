@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('body');
             $table->bigInteger('sender')->unsigned()->index();
             $table->bigInteger('receiver')->unsigned()->index();
+            $table->boolean('seen');
             $table->timestamps();
 
             $table->foreign('sender')->references('id')

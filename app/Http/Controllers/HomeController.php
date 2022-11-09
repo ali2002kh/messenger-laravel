@@ -28,6 +28,12 @@ class HomeController extends Controller {
         ->where('sender', $target_id)
         ->where('receiver', $user->id);
 
+        $tmps = $received->where('seen', false);
+        foreach ($tmps as $tmp) {
+            $tmp->seen = true;
+            $tmp->save();
+        }
+
         $messages = $sended->union($received)->sortBy('id');
 
         return view('chat', compact('messages', 'target', 'all_users', 'user', 'users'));
@@ -49,7 +55,8 @@ class HomeController extends Controller {
         $message = new Message([
             'body' => $request->get('body'),
             'sender' => $user->id,
-            'receiver' => $target_id
+            'receiver' => $target_id,
+            'seen' => false,
         ]);
 
         $message->save();
