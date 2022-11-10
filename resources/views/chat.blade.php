@@ -8,7 +8,7 @@ chat
 
 <a href="{{ route('home') }}">back</a>
 <br>
-{{ $target->username }}
+<a href="{{ route('show_profile', $target->id) }}">{{ $target->username }}</a>
 <hr>
 @foreach ($messages as $m) 
 @php

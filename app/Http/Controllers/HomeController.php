@@ -13,7 +13,7 @@ class HomeController extends Controller {
         $this->middleware('auth');
     }
 
-    public function chat(Request $request, int $target_id) {
+    public function chat(Request $request, $target_id) {
 
         $user = Auth::user();
         $users = User::where('id', '!=', $user->id)->get();
@@ -64,7 +64,7 @@ class HomeController extends Controller {
         return redirect()->route('chat', $target_id);
     }
 
-    public function clear(Request $request, int $target_id) {
+    public function clear(Request $request, $target_id) {
 
         $sended = Message::all()
         ->where('sender', auth()->user()->id)
@@ -83,7 +83,7 @@ class HomeController extends Controller {
         return redirect()->route('chat', $target_id);
     }
 
-    public function delete_Message(Request $request, int $message_id) {
+    public function delete_Message(Request $request, $message_id) {
 
         $message = Message::all()->find($message_id);
         $target_id = $message->receiver;

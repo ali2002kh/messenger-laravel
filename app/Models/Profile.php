@@ -11,7 +11,7 @@ class Profile extends Model
 
     protected $gaurded = [
         'id',
-        'user_id'
+        
     ];
 
     protected $fillable = [
@@ -19,6 +19,7 @@ class Profile extends Model
         'image',
         'first_name',
         'last_name',
+        'user_id'
     ];
 
     public function user() {

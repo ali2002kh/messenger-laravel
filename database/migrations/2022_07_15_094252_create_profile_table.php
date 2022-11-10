@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('last_name')->nullable();
             $table->text('bio')->nullable();
             $table->bigInteger('user_id')->unsigned()->index();
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')
             ->on('users')->onDelete('cascade')

@@ -19,7 +19,11 @@ class AuthController extends Controller
             if ($user->number == $request->get('number')) {
                 if ($user->password == $request->get('password')) {
                     Auth::login($user);
-                    return redirect('home');
+                    if ($user->profile) {
+                        return redirect('home');
+                    } else  {
+                        return redirect('create_profile');
+                    }
                 }
             }
         }
@@ -48,7 +52,7 @@ class AuthController extends Controller
         ]);
         $user->save();
         Auth::login($user);
-        return redirect('home');
+        return redirect('create_profile');
     }
 
     public function logout(Request $request) {

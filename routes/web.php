@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return redirect('home');
@@ -11,8 +12,8 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])
 ->name('home');
 
-
 //------------------------------------------------------------
+
 Route::get('login_page', [AuthController::class, 'login_page'])
 ->name('login_page');
 
@@ -27,6 +28,7 @@ Route::post('signup', [AuthController::class, 'signup'])
 
 Route::get('logout', [AuthController::class, 'logout'])
 ->name('logout');
+
 //--------------------------------------------------------------
 
 Route::get('/chat/{target_id}', [HomeController::class, 'chat'])
@@ -40,3 +42,22 @@ Route::post('/chat/{target_id}/clear', [HomeController::class, 'clear'])
 
 Route::post('/chat/{message_id}/delete-message', [HomeController::class, 'delete_message'])
 ->name('delete_message');
+
+//----------------------------------------------------------------
+
+Route::get('/create_profile', [ProfileController::class, 'create_profile'])
+->name('create_profile');
+
+Route::post('/store_profile', [profileController::class, 'store_profile'])
+->name('store_profile');
+
+Route::get('profile/{user_id}', [profileController::class, 'show_profile'])
+->name('show_profile');
+
+Route::get('/edit_profile', [ProfileController::class, 'edit_profile'])
+->name('edit_profile');
+
+Route::post('/update_profile', [profileController::class, 'update_profile'])
+->name('update_profile');
+
+//----------------------------------------------------------------

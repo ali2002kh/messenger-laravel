@@ -8,7 +8,7 @@ home
 
     <a href="{{ route('logout') }}">logout</a>
     <br>
-    {{$user->username}}
+    <a href="{{ route('show_profile', $user->id) }}">{{$user->username}}</a>
     <hr>
     @foreach ($users as $u) 
         <a id="chat_{{$u->id}}" href="{{ route('chat', $u->id) }}">
