@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login_page(Request $request) {
+    public function login_page() {
         return view('auth.login');
     }
 
     public function login(Request $request) {
+
+        $request->validate([
+            'number' => 'required|regex:/(09)[0-9]{9}/',
+            'password' => 'required'
+        ]);
 
         $users = User::all();
         foreach ($users as $user) {
@@ -27,7 +33,11 @@ class AuthController extends Controller
                 }
             }
         }
-        return redirect('login_page');
+
+        // return redirect()->route('login_page')
+        // ->withErrors(['msg' => 'شماره یا رمز اشتباه است.'])
+        // ->withInput()
+        
     }
 
     public function signup_page() {
@@ -35,6 +45,13 @@ class AuthController extends Controller
     }
 
     public function signup(Request $request) {
+
+        $request->validate([
+            'number' => 'required|regex:/(09)[0-9]{9}/|unique:users',
+            "username" => 'required|unique:users',
+            'password1' => 'required',
+            'password2' => 'required',
+        ]);
 
         $users = User::all();
         foreach ($users as $user) {
@@ -55,7 +72,7 @@ class AuthController extends Controller
         return redirect('create_profile');
     }
 
-    public function logout(Request $request) {
+    public function logout() {
 
         Auth::logout();
         return redirect('home');

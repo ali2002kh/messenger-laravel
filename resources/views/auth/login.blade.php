@@ -6,9 +6,11 @@ login
 
 @section('content')
 
+@include('layouts.partials.error')
+
 <form action="{{ route('login') }}" method='Post'>
     @csrf
-    <input type='text' name='number' placeholder='number'>
+    <input type='text' name='number' placeholder='number' value="{{ old('number') }}">
     <input type='password' name='password' placeholder='password'>
     <input type='submit'>
 </form>

@@ -6,6 +6,8 @@ signup
 
 @section('content')
 
+@include('layouts.partials.error')
+
 <form action="{{ route('signup') }}" method='Post'>
     @csrf
     <input type='text' name='number' placeholder='number'>
