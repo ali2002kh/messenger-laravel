@@ -34,9 +34,9 @@ class AuthController extends Controller
             }
         }
 
-        // return redirect()->route('login_page')
-        // ->withErrors(['msg' => 'شماره یا رمز اشتباه است.'])
-        // ->withInput()
+        return redirect()->route('login_page')
+        ->withErrors(['msg' => 'شماره یا رمز اشتباه است'])
+        ->withInput();
         
     }
 
