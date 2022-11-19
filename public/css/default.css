@@ -1,0 +1,76 @@
+*{
+    margin: 0px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+html , body{
+    height: 100%;
+    background-color: #8883f8;
+}
+
+.menu{
+    text-decoration: none;
+    width: 50%;
+    height: 100%;
+    background-color: #8888f1;
+    overflow: scroll;
+}
+
+@media only screen and (max-width: 600px){
+    .menu{
+        width: 100%;
+    }
+}
+
+.header {
+    background-color: #28274b;
+    color:#8888f1;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu img{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 10px;
+    display: inline;
+}
+.chats{
+    background-color: #17172b;
+    color:#8888f1;
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1px;
+}
+
+.menu .name{
+    background-color: #17172b;
+    text-decoration: none;
+    color: #8888f1;
+    display: inline;
+}
+
+.chatlist{
+    background-color:#8888f1
+}
+
+button{
+    padding: 10px;
+    background-color: #8883f8;
+    color: #080710;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+button:hover{
+    background-color: #121120;
+    color: #8883f8;
+    transition-duration: 0.5s;
+}
