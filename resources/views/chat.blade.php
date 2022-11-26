@@ -1,79 +1,51 @@
-@extends('layouts.app')
+@extends('layouts.menu')
 
 @section('title')
-chat
+    panel
 @endsection
 
-@section('content')
+@section('css')
+../css/panel.css
+@endsection
 
-<a href="{{ route('home') }}">back</a>
-<br>
-<a href="{{ route('show_profile', $target->id) }}">{{ $target->username }}</a>
-<hr>
-@foreach ($messages as $m) 
-@php
-    $sender = $all_users->where('id', $m->sender)->first();
-@endphp
-    {{ $sender->username }}:
-    {{ $m->body }}
-    <form action="{{ route('delete_message', $m->id) }}" method='Post'>
-        @csrf
-        <input type='submit' value="delete">
-    </form>
-    <br>
-@endforeach
+@section('all')
+<div class="all">
+@endsection
 
-<hr>
-<form id="myForm" action="{{ route('send_message', $target->id) }}" method='Post'>
-    @csrf
-    <textarea id="txt" name='body' placeholder='type your message...'></textarea>
-    <input type='button' value="send" onclick="sendAndDelete()">
-</form>
-<hr>
-<form action="{{ route('clear', $target->id) }}" method='Post'>
-    @csrf
-    <input type='submit' value="clear history">
-</form>
+@section('end')
+</div>
+@endsection
 
-<script>
-    var txt = document.getElementById('txt')
-    refresh()
-    txt.addEventListener('keyup', function(e) {
-        clearInterval(interval)
-        refresh()
-        localStorage.setItem('txt', txt.value)
-        var cursorPosition = txt.selectionStart
-        localStorage.setItem('cursor', cursorPosition)
-    })
-
-    function old(v) { 
-        if (!localStorage.getItem(v)) {
-            return ""
-        } else {
-            return localStorage.getItem(v)
-        }
-    }
-
-    txt.focus()
-    txt.value = old("txt")
-    txt.selectionEnd = localStorage.getItem('cursor')
-
-    function refresh() {
-        interval = setInterval(() => {
-            if (txt.value == '') {
-                location.reload()
-            }
-        },3000)
-    }
-
-    setTimeout(() => {
-        location.reload()
-    }, 5000);
-
-    function sendAndDelete() {
-        localStorage.removeItem('txt')
-        document.getElementById('myForm').submit()
-    }
-</script>
-
+@section('chat')
+    <div class="head">
+        <h3 class="header">
+            <a class="chats" id="prf" href="{{ route('show_profile', $target->id) }}">
+                <img src="{{ asset('storage/profile/'.$target->profile->image) }}">
+                <p class="name">{{ $target->profile->first_name }} {{ $target->profile->last_name }}</p>
+            </a>
+            <form action="{{ route('clear', $target->id) }}" method='Post'>
+                @csrf
+                <button type='submit'>Clear</button>
+            </form>
+            <a href="{{ route('home') }}"><button>Back</button></a>
+        </h3>
+    </div>
+    @foreach ($messages as $m) 
+    @php
+        $sender = $all_users->where('id', $m->sender)->first();
+    @endphp
+        <div 
+        @if ($sender->id == $user->id)
+        class="massage self"
+        @else 
+        class="massage other"
+        @endif
+        >
+            {{ $m->body }}
+        </div>
+        {{-- <form action="{{ route('delete_message', $m->id) }}" method='Post'>
+            @csrf
+            <input type='submit' value="delete">
+        </form> --}}
+    @endforeach
 @endsection
