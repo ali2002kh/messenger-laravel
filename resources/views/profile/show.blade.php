@@ -15,19 +15,23 @@
 </head>
 <body>
     <form>
-        <img src="{{ asset('storage/profile/'.$user->profile->image) }}">
+        <img src="{{ asset('storage/profile/'.$user->profile->image) }}"><br>
+        {{-- <div class="fname">
+            {{ $user->profile->first_name }}
+        </div>
+        <div class="lname">
+            {{$user->profile->last_name }}
+        </div> --}}
         <div class="name">
-            <div class="fname">
-                {{ $user->profile->first_name }}
-            </div>
-            <div class="lname">
-                {{$user->profile->last_name }}
-            </div>
+            <h3>نام</h3>
+            {{ $user->profile->first_name }} {{ $user->profile->last_name }}
         </div>
         <div class="bio">
+            <h3>بایو</h3>
             {{ $user->profile->bio }}
         </div>
         <div class="username">
+            <h3>نام کاربری</h3>
             {{ $user->username }}
         </div>
         <a href="{{route('chat', $user->id) }}">back</a>

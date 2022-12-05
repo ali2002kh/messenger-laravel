@@ -11,15 +11,19 @@
     <form   action="{{ route('update_profile') }}" method='Post' 
             enctype="multipart/form-data">
         @csrf
-        <img src="{{ asset('storage/img/default.jpg') }}">
+        <img src="{{ asset('storage/profile/'.$profile->image) }}">
+        <label for="file">عکس پروفایل</label>
         <input type="file" class="myfile" name="file"
         value="{{ asset('storage/profile/'.$profile->image) }}"><br>
-        <input type="text" class="fname" name="fname" placeholder="first name" required 
-        value="{{ $profile->first_name }}">><br>
-        <input type="text" class="lname" name="lname" placeholder="last name" required
-        value="{{ $profile->last_name }}">><br>
-        <textarea name='bio' placeholder='bio' required>{{ $profile->bio }}</textarea>
-        <input type='submit'>
+        <label for="fname">نام</label>
+        <input type="text" class="fname" name="fname" placeholder="نام" required 
+        value="{{ $profile->first_name }}"><br>
+        <label for="lname">نام خانوادگی</label>
+        <input type="text" class="lname" name="lname" placeholder="نام خانوادگی" required
+        value="{{ $profile->last_name }}"><br>
+        <label for="bio">بایو</label>
+        <textarea name='bio' placeholder='بایو' required>{{ $profile->bio }}</textarea>
+        <input type='submit' value="ثبت"  class="submit">
     </form>
 </body>
 </html>
