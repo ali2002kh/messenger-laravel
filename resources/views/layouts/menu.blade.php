@@ -12,7 +12,7 @@
         <div class="menu">
             <div class="head">
                 <h3 class="header">
-                    Welcome To NILI!
+                    Nili
                     <a href="{{ route('show_profile', $user->id) }}">{{$user->username}}</a>
                     <a href="{{ route('logout') }}"><button>Log Out</button></a>
                 </h3>
@@ -25,19 +25,19 @@
                         <p class="name">{{ $u->profile->first_name }} {{ $u->profile->last_name }}</p>
                     </a>
 
-                    {{-- @if ($u->last_message($user->id))
+                    @if ($u->last_message($user->id))
                         @php
                             $sender = $all_users->find($u->last_message($user->id)->sender)
                         @endphp
                         @if ($sender != auth()->user() && $u->last_message($user->id)->seen == false) 
                             <script>
                                 
-                                document.getElementById("chat_{{$u->id}}").style.background = red;
+                                // document.getElementById("chat_{{$u->id}}")
                             </script>
                         @endif
                         {{ $sender->username }}:
                         {{ $u->last_message($user->id)->body }}
-                    @endif --}}
+                    @endif
                 @endforeach   
             </div>
         </div>
