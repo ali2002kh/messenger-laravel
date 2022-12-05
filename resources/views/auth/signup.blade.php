@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singup</title>
+    <title>ثبت نام</title>
     <link rel="stylesheet" href="css/singup.css">
 </head>
 <body>
     <form action="{{ route('signup') }}" method='Post'>
-        <h1>Signup Here</h1>
+        <h1>ساخت حساب کاربری</h1>
         @if ($errors->any())
             <ul>
                 @foreach ($errors->all() as $error)
@@ -18,21 +18,21 @@
             </ul>
         @endif
         @csrf
-        <label for="Phone">Phone Number</label>
-        <input type="text" name='number' placeholder="number" id="tel" required>
+        <label for="Phone">شماره تلفن</label>
+        <input type="text" name='number' placeholder="شماره تلفن" id="tel" required>
 
-        <label for="Username">Username</label>
-        <input type="text" name='username' placeholder="username" id="text" required>
+        <label for="Username">نام کاربری</label>
+        <input type="text" name='username' placeholder="نام کاربری" id="text" required>
 
-        <label for="password">Password</label>
-        <input type="password" name='password1' placeholder="password" id="password" required>
+        <label for="password">رمز عبور</label>
+        <input type="password" name='password1' placeholder="رمز عبور" id="password" required>
 
-        <label for="cpassword">Confirm Password</label>
-        <input type="password" name="password2" placeholder="confirm password" id="cpassword" required>
+        <label for="cpassword">تایید رمز عبور</label>
+        <input type="password" name="password2" placeholder="تایید رمز عبو" id="cpassword" required>
 
-        <button type="submit">Sign Up</button>
+        <button type="submit">ثبت نام</button>
 
-        <a href="{{ route('login_page') }}">Log in</a>
+        <a href="{{ route('login_page') }}">حساب کاربری دارم</a>
     </form>
 </body>
 </html>

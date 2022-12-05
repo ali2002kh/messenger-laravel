@@ -1,6 +1,6 @@
 *{
     margin: 0px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: center;
     align-items: center;
 }
@@ -40,19 +40,21 @@ input{
     height: 50px;
     width: 100%;
     background-color: #8983f836;
-    border-radius: 3px;
+    border-radius: 10px;
     margin-top: 8px;
 }
 
 button{
     margin-top: 30px;
     margin-bottom: 30px;
-    width: 100%;
+    width: 80%;
     display: block;
     background-color: #8883f8;
     color: #080710;
     padding: 15px 0;
-    border-radius: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 10px;
     cursor: pointer;
     transition-duration: 0.5s;
 }
@@ -75,5 +77,13 @@ a:hover{
 
 
 ul{
+    border: 1px solid #a94442;
+    border-radius: 10px;
+    background-color: #f2dede;
     list-style-type: none;
+    margin: 10px;
+    padding: 5px;
+}
+li{
+    color: #a94442;
 }
