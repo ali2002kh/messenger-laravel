@@ -48,4 +48,8 @@
             <input type='submit' value="delete">
         </form> --}}
     @endforeach
+    <div class="msgbox">
+        <textarea></textarea>
+        <div class="send"><a>send</a></div>
+    </div>
 @endsection

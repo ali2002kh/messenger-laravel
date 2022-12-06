@@ -1,19 +1,22 @@
 *{
     margin: 0px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 html , body{
     height: 100%;
-    background-color: #8883f8;
+    background-color: #744aff;
 }
-
+a{
+    text-decoration: none;
+    color: #8888f1;
+}
 .menu{
     text-decoration: none;
     width: 50%;
     height: 100%;
     background-color: #8888f1;
-    overflow: scroll;
+    overflow: auto;
 }
 
 @media only screen and (max-width: 600px){
@@ -23,7 +26,7 @@ html , body{
 }
 
 .header {
-    background-color: #28274b;
+    background-color: #21203e;
     color:#8888f1;
     padding: 10px;
     display: flex;
@@ -46,11 +49,13 @@ html , body{
     display: flex;
     align-items: center;
     text-align: center;
-    margin-bottom: 1px;
+}
+.chats:hover{
+    background-color: #28274b;
 }
 
 .menu .name{
-    background-color: #17172b;
+    background-color: transparent;
     text-decoration: none;
     color: #8888f1;
     display: inline;
@@ -62,15 +67,41 @@ html , body{
 
 button{
     padding: 10px;
-    background-color: #8883f8;
-    color: #080710;
-    border-radius: 5px;
+    color: #8883f8;
+    background-color: transparent;
     cursor: pointer;
+    border: 0;
+    border-radius: 10px;
     transition-duration: 0.5s;
+    font-weight: bold;
 }
 
 button:hover{
-    background-color: #121120;
-    color: #8883f8;
+    color: #b40f0f;
+    background-color: #17172b;
     transition-duration: 0.5s;
+} 
+::-webkit-scrollbar-track
+{
+	/* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear,
+									   left bottom,
+									   left top,
+									   color-stop(0.44, rgb(122,153,217)),
+									   color-stop(0.72, rgb(73,125,189)),
+									   color-stop(0.86, rgb(28,58,148)));
 }
