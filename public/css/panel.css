@@ -105,7 +105,7 @@ button:hover{
     border-radius: 5px;
     background-color: #28274b;
 }
-.other{
+.self{
     background-color: #17172b;
     /* position: absolute;
     right: 20px; */
@@ -152,4 +152,7 @@ textarea{
 }
 .send{
     padding-right: 5px;
+}
+.nameandlastmassage{
+    text-align: left;
 }

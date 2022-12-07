@@ -22,8 +22,9 @@
                 @foreach ($users as $u) 
                     <a id="chat_{{$u->id}}"  class="chats" href="{{ route('chat', $u->id) }}">
                         <img src="{{ asset('storage/profile/'.$u->profile->image) }}" alt="profile">
-                        <p class="name">{{ $u->profile->first_name }} {{ $u->profile->last_name }}</p>
-                    </a>
+                        <div class="nameandlastmassage">
+                        <p class="name">{{ $u->profile->first_name }} {{ $u->profile->last_name }}</p><br>
+                    
 
                     @if ($u->last_message($user->id))
                         @php
@@ -38,6 +39,8 @@
                         {{ $sender->username }}:
                         {{ $u->last_message($user->id)->body }}
                     @endif
+                        </div>
+                    </a>
                 @endforeach   
             </div>
         </div>
