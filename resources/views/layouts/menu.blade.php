@@ -36,8 +36,10 @@
                                 // document.getElementById("chat_{{$u->id}}")
                             </script>
                         @endif
-                        {{ $sender->username }}:
-                        {{ $u->last_message($user->id)->body }}
+                        <div class="lastmassageandsender">
+                        <div class="sendername">{{ $sender->username }}:</div>
+                        <div class="lastmassage">{{ $u->last_message($user->id)->body }}</div>
+                        </div>
                     @endif
                         </div>
                     </a>
