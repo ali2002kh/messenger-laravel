@@ -55,7 +55,7 @@
     {{-- <hr> --}}
 <form class="msgbox" id="myForm" action="{{ route('send_message', $target->id) }}" method='Post'>
     @csrf
-    <textarea id="txt" name='body' placeholder='type your message...'></textarea>
+    <textarea id="txt" name='body' placeholder='type your message...' rows="fit-content"></textarea>
     <input class="send" type='button' value="send" onclick="sendAndDelete()">
 </form>
 {{-- <hr> --}}
@@ -100,8 +100,11 @@
     }, 5000);
 
     function sendAndDelete() {
-        localStorage.removeItem('txt')
-        document.getElementById('myForm').submit()
+        var x = document.forms["myForm"]["fname"].value;
+        if (!(x == "" || x == null)){
+            localStorage.removeItem('txt')
+            document.getElementById('myForm').submit()
+        }
     }
 </script>
 @endsection
