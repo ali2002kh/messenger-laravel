@@ -65,39 +65,39 @@
 </form> --}}
 
 <script>
-    var txt = document.getElementById('txt')
-    refresh()
-    txt.addEventListener('keyup', function(e) {
-        clearInterval(interval)
-        refresh()
-        localStorage.setItem('txt', txt.value)
-        var cursorPosition = txt.selectionStart
-        localStorage.setItem('cursor', cursorPosition)
-    })
+    // var txt = document.getElementById('txt')
+    // // refresh()
+    // txt.addEventListener('keyup', function(e) {
+    //     clearInterval(interval)
+    //     refresh()
+    //     localStorage.setItem('txt', txt.value)
+    //     var cursorPosition = txt.selectionStart
+    //     localStorage.setItem('cursor', cursorPosition)
+    // })
 
-    function old(v) { 
-        if (!localStorage.getItem(v)) {
-            return ""
-        } else {
-            return localStorage.getItem(v)
-        }
-    }
+    // function old(v) { 
+    //     if (!localStorage.getItem(v)) {
+    //         return ""
+    //     } else {
+    //         return localStorage.getItem(v)
+    //     }
+    // }
 
-    txt.focus()
-    txt.value = old("txt")
-    txt.selectionEnd = localStorage.getItem('cursor')
+    // txt.focus()
+    // txt.value = old("txt")
+    // txt.selectionEnd = localStorage.getItem('cursor')
 
-    function refresh() {
-        interval = setInterval(() => {
-            if (txt.value == '') {
-                location.reload()
-            }
-        },3000)
-    }
+    // function refresh() {
+    //     interval = setInterval(() => {
+    //         if (txt.value == '') {
+    //             location.reload()
+    //         }
+    //     },3000)
+    // }
 
-    setTimeout(() => {
-        location.reload()
-    }, 5000);
+    // setTimeout(() => {
+    //     location.reload()
+    // }, 5000);
 
     function sendAndDelete() {
         var x = document.forms["myForm"]["body"].value;
