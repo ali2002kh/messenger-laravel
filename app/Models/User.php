@@ -44,4 +44,27 @@ class User extends Authenticatable
         return $sended->union($received)->sortByDesc('id')->first();
     }
 
+    public function is_friend($user_id) {
+
+        $sended = Friend::all()
+        ->where('sender', $this->id)
+        ->where('receiver', $user_id)
+        ->where('accepted', true);
+
+        $received = Friend::all()
+        ->where('sender', $user_id)
+        ->where('receiver', $this->id)
+        ->where('accepted', true);
+
+        $friendship = $sended->union($received)->count();
+        return $friendship;
+    }
+
+    public function requested_to($user_id) {
+
+        return Friend::all()
+        ->where('sender', $this->id)
+        ->where('receiver', $user_id)->count();
+    }
+
 }

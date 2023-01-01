@@ -68,3 +68,19 @@ Route::get('/friends', [FriendController::class, 'index'])
 
 Route::post('/friends', [FriendController::class, 'searched'])
 ->name('friends_searched');
+
+Route::post('/friends/{sender_id}/accept', [FriendController::class, 'accept'])
+->name('accept');
+
+Route::post('/friends/{sender_id}/deny', [FriendController::class, 'deny'])
+->name('deny');
+
+Route::post('/friends/{target_id}/remove', [FriendController::class, 'remove'])
+->name('remove');
+
+Route::post('/friends/{target_id}/send_request', [FriendController::class, 'send_request'])
+->name('send_request');
+
+Route::post('/friends/{target_id}/undo_request', [FriendController::class, 'undo_request'])
+->name('undo_request');
+

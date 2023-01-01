@@ -4,6 +4,14 @@
     <a href="{{route('chat', $user->id) }}">صفحه گفتگو</a>
 @endif
 
+@if ($user == auth()->user())
+    <a href="{{route('home') }}">بازگشت</a>
+@else
+    <a href="{{route('chat', $user->id) }}">بازگشت</a>
+@endif
+
+{{-- شرط های بالا فقط بیزون فورم پایین کار میکنن نمیدونم چرا ؟؟؟؟ --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +44,6 @@
                 {{ $user->username }}
             </div>
         </div>
-        <a href="{{route('chat', $user->id) }}">بازگشت</a>
     </form>
 </body>
 </html>

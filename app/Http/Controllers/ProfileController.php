@@ -6,7 +6,7 @@ use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class ProfileController extends Controller 
 {
     public function create_profile() {
         return view('profile.create');
