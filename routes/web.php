@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FriendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -61,3 +62,9 @@ Route::post('/update_profile', [profileController::class, 'update_profile'])
 ->name('update_profile');
 
 //----------------------------------------------------------------
+
+Route::get('/friends', [FriendController::class, 'index'])
+->name('friends');
+
+Route::post('/friends', [FriendController::class, 'searched'])
+->name('friends_searched');
