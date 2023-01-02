@@ -31,11 +31,8 @@
         </h3>
     </div>
     @foreach ($messages as $m) 
-    @php
-        $sender = $all_users->where('id', $m->sender)->first();
-    @endphp
         <div 
-        @if ($sender->id == $user->id)
+        @if ($m->is_sender($user->id))
         class="massage self"
         @else 
         class="massage other"

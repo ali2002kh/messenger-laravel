@@ -8,8 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $gaurded = [
@@ -85,13 +85,32 @@ class User extends Authenticatable
         return $friends;
     }
 
+    public function groups() {
+        $groups = array();
+        $tmps = Membership::all()->where('user_id', $this->id);
+
+        foreach($tmps as $tmp) {
+            $groups[] = Group::find($tmp->group_id);
+        }
+
+        return $groups;
+    }
+
     public function allHasChatWith() {
 
         $result = array();
         $all_users = User::all();
+        $all_groups = $this->groups();
+
         foreach ($all_users as $u) {
             if ($u->last_message($this->id)) {
                 $result[] = $u;
+            }
+        }
+
+        foreach ($all_groups as $g) {
+            if ($g->last_message()) {
+                $result[] = $g;
             }
         }
 
@@ -101,5 +120,11 @@ class User extends Authenticatable
 
         return $result;
     }
+
+    public function menu() {
+        return array_unique(array_merge(array_unique(array_merge($this->allHasChatWith(), $this->friends())), $this->groups()));
+    }
+
+
 
 }

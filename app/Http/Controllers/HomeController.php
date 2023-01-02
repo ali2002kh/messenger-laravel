@@ -13,10 +13,9 @@ class HomeController extends Controller {
         $this->middleware('auth');
     }
 
-    public function chat(Request $request, $target_id) {
+    public function chat($target_id) {
 
         $user = Auth::user();
-        $users = User::where('id', '!=', $user->id)->get();
         $all_users = User::all();
         $target = User::find($target_id); 
 
@@ -36,9 +35,7 @@ class HomeController extends Controller {
 
         $messages = $sended->union($received)->sortBy('id');
 
-        $friends = $user->friends();
-
-        $contacts = array_unique(array_merge($user->allHasChatWith(), $friends));
+        $contacts = $user->menu();
 
         return view('chat', compact('messages', 'target', 'all_users', 'user', 'contacts'));
     }
@@ -46,12 +43,9 @@ class HomeController extends Controller {
     public function index(Request $request) {
 
         $user = Auth::user();
-        $users = User::where('id', '!=', $user->id)->get();
         $all_users = User::all();
 
-        $friends = $user->friends();
-
-        $contacts = array_unique(array_merge($user->allHasChatWith(), $friends));
+        $contacts = $user->menu();
 
         return view('home', compact('user', 'contacts', 'all_users'));
     }
@@ -93,7 +87,7 @@ class HomeController extends Controller {
 
     public function delete_Message(Request $request, $message_id) {
 
-        $message = Message::all()->find($message_id);
+        $message = Message::find($message_id);
         $target_id = $message->receiver;
         $message->delete();
 

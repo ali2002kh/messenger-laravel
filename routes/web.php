@@ -47,6 +47,17 @@ Route::post('/chat/{message_id}/delete-message', [HomeController::class, 'delete
 
 //----------------------------------------------------------------
 
+Route::get('/chat/{group_id}/group', [GroupController::class, 'chat'])
+->name('group.chat');
+
+Route::post('/chat/{group_id}/group', [GroupController::class, 'send_message'])
+->name('group.send_message');
+
+Route::post('/chat/{public_message_id}/group/delete-message', [GroupController::class, 'delete_message'])
+->name('group.delete_message');
+
+//----------------------------------------------------------------
+
 Route::get('/create_profile', [ProfileController::class, 'create_profile'])
 ->name('create_profile');
 
@@ -105,21 +116,11 @@ Route::post('/group/{group_id}', [GroupController::class, 'update'])
 Route::get('/group/{group_id}/leave', [GroupController::class, 'leave'])
 ->name('group.leave');
 
+Route::post('/group/{group_id}/{user_id}/remove', [GroupController::class, 'remove'])
+->name('group.remove');
+
 Route::get('/group/{group_id}/add', [GroupController::class, 'add_page'])
 ->name('group.add_page');
 
-Route::post('/group/{group_id}/add', [GroupController::class, 'add'])
+Route::post('/group/{group_id}/{user_id}/add', [GroupController::class, 'add'])
 ->name('group.add');
-
-Route::post('/group/{group_id}/remove', [GroupController::class, 'remove'])
-->name('group.remove');
-
-Route::get('/chat/{group_id}/group', [GroupController::class, 'chat'])
-->name('group.chat');
-
-Route::post('/chat/{group_id}/group', [GroupController::class, 'send_message'])
-->name('group.send_message');
-
-Route::post('/chat/{public_message_id}/group/delete-message', [GroupController::class, 'delete_message'])
-->name('group.delete_message');
-
