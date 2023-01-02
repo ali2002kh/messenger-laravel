@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FriendController;
+use App\Http\Controllers\GroupController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -83,4 +84,42 @@ Route::post('/friends/{target_id}/send_request', [FriendController::class, 'send
 
 Route::post('/friends/{target_id}/undo_request', [FriendController::class, 'undo_request'])
 ->name('undo_request');
+
+//----------------------------------------------------------------
+
+Route::get('/group/create', [GroupController::class, 'create'])
+->name('group.create');
+
+Route::post('/group', [GroupController::class, 'store'])
+->name('group.store');
+
+Route::get('/group/{group_id}', [GroupController::class, 'show'])
+->name('group.show');
+
+Route::get('/group/{group_id}/edit', [GroupController::class, 'edit'])
+->name('group.edit');
+
+Route::post('/group/{group_id}', [GroupController::class, 'update'])
+->name('group.update');
+
+Route::get('/group/{group_id}/leave', [GroupController::class, 'leave'])
+->name('group.leave');
+
+Route::get('/group/{group_id}/add', [GroupController::class, 'add_page'])
+->name('group.add_page');
+
+Route::post('/group/{group_id}/add', [GroupController::class, 'add'])
+->name('group.add');
+
+Route::post('/group/{group_id}/remove', [GroupController::class, 'remove'])
+->name('group.remove');
+
+Route::get('/chat/{group_id}/group', [GroupController::class, 'chat'])
+->name('group.chat');
+
+Route::post('/chat/{group_id}/group', [GroupController::class, 'send_message'])
+->name('group.send_message');
+
+Route::post('/chat/{public_message_id}/group/delete-message', [GroupController::class, 'delete_message'])
+->name('group.delete_message');
 
