@@ -41,7 +41,13 @@ class User extends Authenticatable
         ->where('sender', $user_id)
         ->where('receiver', $this->id);
 
-        return $sended->union($received)->sortByDesc('id')->first();
+        $result = $sended->union($received)->sortByDesc('id');
+
+        if ($result->count() == 0) {
+            return false;
+        }
+
+        return $result->first();
     }
 
     public function is_friend($user_id) {
@@ -65,6 +71,35 @@ class User extends Authenticatable
         return Friend::all()
         ->where('sender', $this->id)
         ->where('receiver', $user_id)->count();
+    }
+
+    public function friends() {
+
+        $friends = array();
+        $all_users = User::all();
+        foreach ($all_users as $u) {
+            if ($u->is_friend($this->id)) {
+                $friends[] = $u;
+            }
+        }
+        return $friends;
+    }
+
+    public function allHasChatWith() {
+
+        $result = array();
+        $all_users = User::all();
+        foreach ($all_users as $u) {
+            if ($u->last_message($this->id)) {
+                $result[] = $u;
+            }
+        }
+
+        usort($result,function($first,$second){
+            return $first->last_message($this->id)->created_at < $second->last_message($this->id)->created_at;
+        });
+
+        return $result;
     }
 
 }

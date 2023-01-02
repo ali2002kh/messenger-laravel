@@ -19,7 +19,7 @@
                 
             </div>
             <div class="chatlist">
-                @foreach ($users as $u) 
+                @foreach ($contacts as $u) 
                     <a id="chat_{{$u->id}}"  class="chats" href="{{ route('chat', $u->id) }}">
                         <img src="{{ asset('storage/profile/'.$u->profile->image) }}" alt="profile">
                         <div class="nameandlastmassage">

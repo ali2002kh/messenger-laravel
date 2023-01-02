@@ -45,17 +45,17 @@ class FriendController extends Controller {
         $resultByUsername = User::where('username', $request->get('search_field'));
         $result = $resultByNumber->union($resultByUsername)->first();
 
-        if($result->is_friend($user)) {
-                // 1
-        } else {
-            if($user->requested_to($result->id)) {
-               //  2
-            } else if ($result->requested_to($user)) {
-                // 3
-            } else {
-                // 4
-            }
-        }
+        // if($result->is_friend($user)) {
+        //         // 1
+        // } else {
+        //     if($user->requested_to($result->id)) {
+        //        //  2
+        //     } else if ($result->requested_to($user)) {
+        //         // 3
+        //     } else {
+        //         // 4
+        //     }
+        // }
 
         return view("friends", compact('senders', 'result'));
     }

@@ -15,10 +15,18 @@ return new class extends Migration
     {
         Schema::create('friends', function (Blueprint $table) {
             $table->id();
-            $table->string('sender');
-            $table->string('receiver');
+            $table->bigInteger('sender')->unsigned()->index();
+            $table->bigInteger('receiver')->unsigned()->index();
             $table->boolean('accepted');
             $table->timestamps();
+
+            $table->foreign('sender')->references('id')
+            ->on('users')->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->foreign('receiver')->references('id')
+            ->on('users')->onDelete('cascade')
+            ->onUpdate('cascade');
         });
     }
 

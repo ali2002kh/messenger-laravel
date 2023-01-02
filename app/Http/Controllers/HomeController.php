@@ -36,7 +36,11 @@ class HomeController extends Controller {
 
         $messages = $sended->union($received)->sortBy('id');
 
-        return view('chat', compact('messages', 'target', 'all_users', 'user', 'users'));
+        $friends = $user->friends();
+
+        $contacts = array_unique(array_merge($user->allHasChatWith(), $friends));
+
+        return view('chat', compact('messages', 'target', 'all_users', 'user', 'contacts'));
     }
 
     public function index(Request $request) {
@@ -45,7 +49,11 @@ class HomeController extends Controller {
         $users = User::where('id', '!=', $user->id)->get();
         $all_users = User::all();
 
-        return view('home', compact('user', 'users', 'all_users'));
+        $friends = $user->friends();
+
+        $contacts = array_unique(array_merge($user->allHasChatWith(), $friends));
+
+        return view('home', compact('user', 'contacts', 'all_users'));
     }
 
     public function send_message(Request $request, int $target_id) {
