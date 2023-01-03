@@ -19,28 +19,42 @@
                 
             </div>
             <div class="chatlist">
+                @php
+                    $i = 0;
+                @endphp
                 @foreach ($contacts as $u) 
-                    <a id="chat_{{$u->id}}"  class="chats" href="{{ route('chat', $u->id) }}">
-                        <img src="{{ asset('storage/profile/'.$u->profile->image) }}" alt="profile">
-                        <div class="nameandlastmassage">
-                        <p class="name">{{ $u->profile->first_name }} {{ $u->profile->last_name }}</p><br>
-                    
-
-                    @if ($u->last_message($user->id))
-                        @php
-                            $sender = $all_users->find($u->last_message($user->id)->sender)
-                        @endphp
-                        @if ($sender != auth()->user() && $u->last_message($user->id)->seen == false) 
-                            <script>
-                                
-                                // document.getElementById("chat_{{$u->id}}")
-                            </script>
-                        @endif
-                        <div class="lastmassageandsender">
-                        <div class="sendername">{{ $sender->username }}:</div>
-                        <div class="lastmassage">{{ $u->last_message($user->id)->body }}</div>
-                        </div>
+                    @php
+                        $i++;
+                    @endphp
+                    @if ($u->is_user())
+                        <a id="chat_{{$i}}"  class="chats" href="{{ route('chat', $u->id) }}">
+                            <img src="{{ asset('storage/profile/'.$u->profile->image) }}" alt="profile">
+                    @else
+                        <a id="chat_{{$i}}"  class="chats" href="{{ route('group.chat', $u->id) }}">
+                            <img src="{{ asset('storage/group/'.$u->image) }}" alt="group">
                     @endif
+                        
+                        <div class="nameandlastmassage">
+
+                            @if ($u->is_user())
+                                <p class="name">{{ $u->profile->first_name }} {{ $u->profile->last_name }}</p><br>
+                            @else
+                                <p class="name">{{ $u->name }}</p><br>
+                            @endif
+                        
+                            @if ($u->last_message($user->id))
+                                @if (!$u->last_message($user->id)->is_sender($user->id) && $u->last_message($user->id)->seen == false) 
+                                    <script>
+                                        
+                                        // document.getElementById("chat_{{$i}}")
+                                    </script>
+                                @endif
+                                <div class="lastmassageandsender">
+                                    <div class="sendername">{{ $u->last_message($user->id)->sender()->name() }}:</div>
+                                    <div class="lastmassage">{{ $u->last_message($user->id)->body }}</div>
+                                </div>
+                            @endif
+
                         </div>
                     </a>
                 @endforeach   

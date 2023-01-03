@@ -48,4 +48,13 @@ class Group extends Model {
 
         return $result->first();
     }
+
+    public function is_user() {
+        return false;
+    }
+
+    public function name() {
+        return $this->name;
+    }
+
 }

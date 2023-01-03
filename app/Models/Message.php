@@ -22,12 +22,16 @@ class Message extends Model
 
     public function sender() {
 
-        return $this->belongsTo('App\Models\User', 'id', 'sender');
+        // return $this->belongsTo('App\Models\User', 'id', 'sender');
+
+        return User::find($this->sender);
     }
 
     public function receiver() {
 
-        return $this->belongsTo('App\Models\User', 'id', 'receiver');
+        // return $this->belongsTo('App\Models\User', 'id', 'receiver');
+
+        return User::find($this->receiver);
     }
 
     public function is_sender($user_id) {

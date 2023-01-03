@@ -26,6 +26,10 @@ class User extends Authenticatable {
         'password',
     ];
 
+    public function name() {
+        return $this->profile->first_name.' '.$this->profile->last_name;
+    }
+
     public function profile() {
 
         return $this->hasOne('App\Models\Profile');
@@ -109,7 +113,7 @@ class User extends Authenticatable {
         }
 
         foreach ($all_groups as $g) {
-            if ($g->last_message()) {
+            if ($g->last_message(null)) {
                 $result[] = $g;
             }
         }
@@ -125,6 +129,8 @@ class User extends Authenticatable {
         return array_unique(array_merge(array_unique(array_merge($this->allHasChatWith(), $this->friends())), $this->groups()));
     }
 
-
+    public function is_user() {
+        return true;
+    }
 
 }
