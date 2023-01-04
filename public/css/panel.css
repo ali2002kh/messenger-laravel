@@ -24,6 +24,7 @@ a{
     height: 100%;
     background-color: #8888f1;
     overflow: auto;
+    overflow-x: hidden;
 }
 
 @media only screen and (max-width: 600px){
@@ -167,7 +168,6 @@ textarea:focus{
     outline: none;
 }
 .lastmassage{
-    width: 40%;
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
@@ -179,4 +179,5 @@ textarea:focus{
 }
 .lastmassageandsender{
     display: flex;
+    text-overflow: ellipsis;
 }

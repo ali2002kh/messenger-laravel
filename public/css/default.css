@@ -17,6 +17,7 @@ a{
     height: 100%;
     background-color: #8888f1;
     overflow: auto;
+    overflow-x: hidden;
 }
 
 @media only screen and (max-width: 600px){
@@ -107,4 +108,17 @@ button:hover{
 }
 .nameandlastmassage{
     text-align: left;
+}
+.lastmassage{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline;
+    align-self: baseline;
+}
+.sendername{
+    width: max-content;
+}
+.lastmassageandsender{
+    display: flex;
 }
