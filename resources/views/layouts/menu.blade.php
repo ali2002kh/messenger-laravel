@@ -59,6 +59,9 @@
                     </a>
                 @endforeach   
             </div>
+            <a class="firend">
+                firends
+            </a>
         </div>
         <div class="chat">
             @yield('chat')

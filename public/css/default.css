@@ -128,3 +128,13 @@ button:hover{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.firend{
+    background-color:#28274b;
+    border-radius: 15px;
+    font-weight: normal;
+    position:fixed;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
