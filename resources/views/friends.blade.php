@@ -10,7 +10,7 @@
 <body>
     {{-- <form> --}}
         <div class="form"> 
-        <h1>مخاطبین</h1>
+        <h1>جستجو</h1>
         <div class="searchbox">
             <form action="{{ route('friend.search') }}" method='Post'>
                 @csrf
