@@ -1,10 +1,3 @@
-{{-- @foreach ($senders as $sender)
-    {{ $sender->profile->user_id }}
-    {{ auth()->user()->requested_to($sender->profile->user_id) }}
-    {{ $sender->requested_to(auth()->id()) }}
-    <br>
-@endforeach --}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,45 +8,41 @@
     <link rel="stylesheet" href="css/friend.css">
 </head>
 <body>
-    <form>
+    {{-- <form> --}}
         <h1>مخاطبین</h1>
         <div class="searchbox">
-            <input class="search" type="search" name="search" placeholder="   جستجو....">
-            <button class="search-btn" type="submit">
-                Search
-            </button>
+            <form action="{{ route('friend.search') }}" method='Post'>
+                @csrf
+                <input class="search" type="search" name="search" placeholder="   جستجو....">
+                <button class="search-btn" type="submit">
+                    Search
+                </button>
+            </form>
         </div>
-        <ul>
-            <li> مخاطبی وجود ندارد</li>
-        </ul>
+        @if (isset($result))
+            @if (!$result)
+            <ul>
+                <li>not found</li>
+            </ul>
+            @else
+            <ul>
+                <li>{{ $result->username }}</li>
+            </ul>
+            @endif
+        @endif
+        @foreach ($senders as $s)
             <div class="chats">
-                <a class="chats" href="">
-                    <img src="" alt="profile">
+                <a class="chats" href="{{ route('show_profile', $s->id) }}">
+                    <img src="{{ asset('storage/profile/'.$s->profile->image) }}" alt="profile">
                     <div class="nameandlastmassage">
-                        <p class="name">نیما شاهرخی</p>
+                        <p class="name">{{ $s->name() }}</p>
                     </div>
                 </a>
-                <button>قبول</button>
+                <a href="{{ route('friend.deny', $s->id) }}"><button>رد</button></a>
+                <a href="{{ route('friend.accept', $s->id) }}"><button>قبول</button></a>
             </div>
-            <div class="chats">
-                <a class="chats" href="">
-                    <img src="" alt="profile">
-                    <div class="nameandlastmassage">
-                        <p class="name">نیما شاهرخی</p>
-                    </div>
-                </a>
-                <button>قبول</button>
-            </div>
-            <div class="chats">
-                <a class="chats" href="">
-                    <img src="" alt="profile">
-                    <div class="nameandlastmassage">
-                        <p class="name">نیما شاهرخی</p>
-                    </div>
-                </a>
-                <button>قبول</button>
-            </div>
-    </form>
+        @endforeach
+    {{-- </form> --}}
 </body>
 </html>
 

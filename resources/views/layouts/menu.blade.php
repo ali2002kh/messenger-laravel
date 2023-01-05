@@ -37,7 +37,7 @@
                         <div class="nameandlastmassage">
 
                             @if ($u->is_user())
-                                <p class="name">{{ $u->profile->first_name }} {{ $u->profile->last_name }}</p><br>
+                                <p class="name">{{ $u->->name() }}</p><br>
                             @else
                                 <p class="name">{{ $u->name }}</p><br>
                             @endif
@@ -59,7 +59,7 @@
                     </a>
                 @endforeach   
             </div>
-            <a class="firend">
+            <a class="firend" href="{{ route('friend.index') }}">
                 firends
             </a>
         </div>

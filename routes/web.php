@@ -76,25 +76,25 @@ Route::post('/update_profile', [profileController::class, 'update_profile'])
 //----------------------------------------------------------------
 
 Route::get('/friends', [FriendController::class, 'index'])
-->name('friends');
+->name('friend.index');
 
-Route::post('/friends', [FriendController::class, 'searched'])
-->name('friends_searched');
+Route::post('/friends', [FriendController::class, 'search'])
+->name('friend.search');
 
-Route::post('/friends/{sender_id}/accept', [FriendController::class, 'accept'])
-->name('accept');
+Route::get('/friends/{sender_id}/accept', [FriendController::class, 'accept'])
+->name('friend.accept');
 
-Route::post('/friends/{sender_id}/deny', [FriendController::class, 'deny'])
-->name('deny');
+Route::get('/friends/{sender_id}/deny', [FriendController::class, 'deny'])
+->name('friend.deny');
 
-Route::post('/friends/{target_id}/remove', [FriendController::class, 'remove'])
-->name('remove');
+Route::get('/friends/{target_id}/remove', [FriendController::class, 'remove'])
+->name('friend.remove');
 
-Route::post('/friends/{target_id}/send_request', [FriendController::class, 'send_request'])
-->name('send_request');
+Route::get('/friends/{target_id}/send_request', [FriendController::class, 'send_request'])
+->name('friend.send_request');
 
-Route::post('/friends/{target_id}/undo_request', [FriendController::class, 'undo_request'])
-->name('undo_request');
+Route::get('/friends/{target_id}/undo_request', [FriendController::class, 'undo_request'])
+->name('friend.undo_request');
 
 //----------------------------------------------------------------
 

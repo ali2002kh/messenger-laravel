@@ -31,7 +31,7 @@ class FriendController extends Controller {
         return view("friends", compact('senders'));
     }
 
-    public function searched(Request $request) {
+    public function search(Request $request) {
 
         $user = auth()->user();
         $senders = array();
@@ -45,22 +45,14 @@ class FriendController extends Controller {
             $senders[] = User::find($friend_request->sender);
         }
 
-        $resultByNumber = User::where('number', $request->get('search_field'));
-        $resultByUsername = User::where('username', $request->get('search_field'));
-        $result = $resultByNumber->union($resultByUsername)->first();
-
-        // if($result->is_friend($user)) {
-        //         // 1
-        // } else {
-        //     if($user->requested_to($result->id)) {
-        //        //  2
-        //     } else if ($result->requested_to($user)) {
-        //         // 3
-        //     } else {
-        //         // 4
-        //     }
-        // }
-
+        $resultByNumber = User::where('number', $request->get('search'));
+        $resultByUsername = User::where('username', $request->get('search'));
+        $result = $resultByNumber->union($resultByUsername);
+        if ($result->count() > 0) {
+            $result = $result->first();
+        } else {
+            $result = false;
+        }
         return view("friends", compact('senders', 'result'));
     }
 
