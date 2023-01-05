@@ -108,17 +108,23 @@ button:hover{
 }
 .nameandlastmassage{
     text-align: left;
-}
-.lastmassage{
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.lastmassage{
     display: inline;
     align-self: baseline;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .sendername{
     width: max-content;
 }
 .lastmassageandsender{
     display: flex;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

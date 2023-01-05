@@ -97,7 +97,7 @@ button:hover{
 
 .chat{
     text-decoration: none;
-    height: 97%;
+    height: 95%;
     overflow: auto;
 }
 
@@ -106,10 +106,11 @@ button:hover{
     margin: 5px;
     padding: 5px;
     width: max-content;
-    max-width: 90%;
+    max-width: 80%;
     border-radius: 5px;
     background-color: #28274b;
     text-overflow:ellipsis;
+    word-break: break-all;
 }
 .self{
     background-color: #17172b;
@@ -161,23 +162,28 @@ textarea{
 .send{
     padding-right: 5px;
 }
-.nameandlastmassage{
-    text-align: left;
-}
 textarea:focus{
     outline: none;
 }
-.lastmassage{
+.nameandlastmassage{
+    text-align: left;
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.lastmassage{
     display: inline;
     align-self: baseline;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .sendername{
     width: max-content;
 }
 .lastmassageandsender{
     display: flex;
+    white-space: nowrap; 
+    overflow: hidden;
     text-overflow: ellipsis;
 }
