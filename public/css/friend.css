@@ -9,7 +9,7 @@ body{
     background-color: #151525;
 }
 
-form{
+/* form{
     background-color: rgba(255, 255, 255, 0.1);
     position: absolute;
     transform: translate(-50%,-50%);
@@ -28,9 +28,13 @@ form *{
     outline: none;
     border: none;
     text-align: center;
+} */
+form{
+    margin: 50px 0 50px 0;
+    display: flex;
 }
 h1{
-    margin-bottom: 30px;
+    color: #8883f8;
 }
 label{
     margin-top: 10px;
@@ -45,15 +49,10 @@ input{
 }
 
 button{
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 80%;
-    display: block;
+    width: 20%;
     background-color: #8883f8;
-    color: #080710;
+    color: #080710; 
     padding: 15px 0;
-    margin-left: 10%;
-    margin-right: 10%;
     border-radius: 10px;
     cursor: pointer;
     transition-duration: 0.5s;
@@ -65,7 +64,7 @@ a{
 }
 
 button:hover{
-    background-color: #121120;
+    background-color: #20203b;
     color: #8883f8;
     transition-duration: 0.5s;
 }
@@ -88,17 +87,16 @@ li{
     color: #a94442;
 }
 .searchbox{
-    display: flex;
+    display: inline;
 }
 .searchbox input{
     margin-top: 0;
 }
-.searchbox button{
-    width: 20%;
-    margin: 0;
-}
 .search{
     text-align: left;
+}
+.search-btn{
+    align-self:center;
 }
 .chats{
     border-radius: 10px;
@@ -134,4 +132,40 @@ li{
     border-radius: 10px;
     cursor: pointer;
     transition-duration: 0.5s;
+}
+.form{
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    max-width: 500px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px #8983f836;
+    padding: 50px 35px;
+    margin: 10px;
+}
+.form *{
+        /* color: #8883f8; */
+        outline: none;
+        border: none;
+        text-align: center;
+}
+.notfound{
+    color: #a94442;
+}
+.user{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    background-color: #121120;
+    color:#8883f8;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+.username{
+    padding-left: 10px;
 }

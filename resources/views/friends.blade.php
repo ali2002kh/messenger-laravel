@@ -9,6 +9,7 @@
 </head>
 <body>
     {{-- <form> --}}
+        <div class="form"> 
         <h1>مخاطبین</h1>
         <div class="searchbox">
             <form action="{{ route('friend.search') }}" method='Post'>
@@ -21,13 +22,14 @@
         </div>
         @if (isset($result))
             @if (!$result)
-            <ul>
-                <li>not found</li>
-            </ul>
+            <div class="notfound">not found</div>
             @else
-            <ul>
-                <li>{{ $result->username }}</li>
-            </ul>
+            <div class="user">
+                <div class="username">{{ $result->username }}</div>
+                <button class="user-btn">
+                    درخواست
+                </button>
+            </div>
             @endif
         @endif
         @foreach ($senders as $s)
@@ -42,6 +44,7 @@
                 <a href="{{ route('friend.accept', $s->id) }}"><button>قبول</button></a>
             </div>
         @endforeach
+        </div>
     {{-- </form> --}}
 </body>
 </html>

@@ -37,7 +37,7 @@
                         <div class="nameandlastmassage">
 
                             @if ($u->is_user())
-                                <p class="name">{{ $u->->name() }}</p><br>
+                                <p class="name">{{ $u->name() }}</p><br>
                             @else
                                 <p class="name">{{ $u->name }}</p><br>
                             @endif
