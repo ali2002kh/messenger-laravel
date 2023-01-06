@@ -39,10 +39,10 @@ class ProfileController extends Controller {
         return redirect()->route('home');
     }
 
-    public function show_profile($user_id) {
+    public function show_profile(Request $request, $user_id) {
         
         $user = User::find($user_id);
-        return view('profile.show', compact('user'));
+        return view('profile.show', compact('user', 'request'));
     }
 
     public function edit_profile() {

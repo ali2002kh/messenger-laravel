@@ -13,7 +13,9 @@ class HomeController extends Controller {
         $this->middleware('auth');
     }
 
-    public function chat($target_id) {
+    public function chat(Request $request, $target_id) {
+
+        $request->session()->put('prev', 'chat');
 
         $user = Auth::user();
         $all_users = User::all();
@@ -40,6 +42,8 @@ class HomeController extends Controller {
     }
 
     public function index(Request $request) {
+
+        $request->session()->put('prev', 'home');
 
         $user = Auth::user();
         $all_users = User::all();

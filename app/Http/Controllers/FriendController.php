@@ -13,7 +13,9 @@ class FriendController extends Controller {
         $this->middleware('auth');
     }
 
-    public function index() {
+    public function index(Request $request) {
+
+        $request->session()->put('prev', 'friends');
 
         $user = Auth::user();
         $senders = array();

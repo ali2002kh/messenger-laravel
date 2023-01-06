@@ -83,7 +83,7 @@ class GroupController extends Controller {
 
             $membership = new Membership([
                 'role' => 'owner',
-                'user_id' => auth()->user(),
+                'user_id' => auth()->id(),
                 'group_id' => $group->id,
             ]);
             $membership->save();

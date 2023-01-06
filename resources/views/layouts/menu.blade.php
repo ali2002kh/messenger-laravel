@@ -58,13 +58,7 @@
                                 @endif --}}
                                 @if (!$u->is_user() || $u != $user)
                                 <div class="lastmassageandsender">
-                                    @if (!$u->last_message($user->id)->is_sender($user->id) && $u->last_message($user->id)->seen == false) 
-                                        <script>
-                                            function unread_massage(){
-                                                var number = document.getElementById("chat_{{$i}}");
-                                                document.getElementById("unread_number").innerHTML = number;
-                                            }
-                                        </script>
+                                    @if (!$u->last_message($user->id)->is_sender($user->id) && $u->last_message($user->id)->seen == false)
                                         <div class="unread"></div>
                                     @endif
                                     <div class="sendername">{{ $u->last_message($user->id)->sender()->name() }}:</div>
@@ -78,7 +72,10 @@
                 @endforeach   
             </div>
             <a class="firend" href="{{ route('friend.index') }}">
-                firends
+                friends
+            </a>
+            <a class="firend" href="{{ route('group.create') }}">
+                new group
             </a>
         </div>
         <div class="chat">

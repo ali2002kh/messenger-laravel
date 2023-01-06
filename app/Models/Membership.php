@@ -9,6 +9,12 @@ class Membership extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'role',
+        'user_id',
+        'group_id'
+    ];
+
     public function user() {
 
         return $this->belongsTo('App\Models\User', 'id', 'sender');

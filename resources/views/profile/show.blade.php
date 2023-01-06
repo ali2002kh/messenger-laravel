@@ -4,11 +4,41 @@
     <a href="{{route('chat', $user->id) }}">صفحه گفتگو</a>
 @endif
 
-@if ($user == auth()->user())
-    <a href="{{route('home') }}">بازگشت</a>
+@if ($request->session()->get('prev') == 'friends')
+    <a href="{{route('friend.index') }}">بازگشت</a>
 @else
-    <a href="{{route('chat', $user->id) }}">بازگشت</a>
+    @if ($user == auth()->user())
+        <a href="{{route('home') }}">بازگشت</a>
+    @else
+        <a href="{{route('chat', $user->id) }}">بازگشت</a>
+    @endif
 @endif
+
+@if ($user != auth()->user())
+    @if ($user->is_friend(auth()->id()))
+        <a href="{{ route('friend.remove', $user->id) }}">
+            <button class="user-btn">remove</button>
+        </a>
+    @else
+        @if (auth()->user()->requested_to($user->id))
+            <a href="{{ route('friend.undo_request', $user->id) }}">
+                <button class="user-btn">undo</button>
+            </a>
+        @else
+            @if ($user->requested_to(auth()->id()))
+                <a href="{{ route('friend.accept', $user->id) }}">
+                    <button class="user-btn">accept</button> 
+                </a>   
+            @else
+                <a href="{{ route('friend.send_request', $user->id) }}">
+                    <button class="user-btn">request</button>
+                </a>
+            @endif
+        @endif
+    @endif
+@endif
+
+
 
 {{-- شرط های بالا فقط بیرون فورم پایین کار میکنن --}}
 
