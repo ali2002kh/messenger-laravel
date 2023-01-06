@@ -19,10 +19,17 @@
 @section('chat')
     <div class="head">
         <h3 class="header">
+            @if ($target == $user)
+            <a class="chats" id="prf">
+                <img src="{{ asset('storage/img/saved-messages.jpg') }}" alt="profile">
+                <p class="name">Saved Messages</p>
+            </a>
+            @else
             <a class="chats" id="prf" href="{{ route('show_profile', $target->id) }}">
                 <img src="{{ asset('storage/profile/'.$target->profile->image) }}">
-                <p class="name">{{ $target->profile->first_name }} {{ $target->profile->last_name }}</p>
+                <p class="name">{{ $target->name() }}</p>
             </a>
+            @endif
             <form action="{{ route('clear', $target->id) }}" method='Post'>
                 @csrf
                 <button type='submit'>Clear</button>
@@ -45,21 +52,11 @@
             <input type='submit' value="delete">
         </form> --}}
     @endforeach
-    {{-- <div class="msgbox">
-        <textarea></textarea>
-        <div class="send"><a>send</a></div>
-    </div> --}}
-    {{-- <hr> --}}
 <form class="msgbox" id="myForm" action="{{ route('send_message', $target->id) }}" method='Post'>
     @csrf
     <textarea id="txt" name='body' placeholder='type your message...'></textarea>
     <input class="send" type='button' value="send" onclick="sendAndDelete()">
 </form>
-{{-- <hr> --}}
-{{-- <form action="{{ route('clear', $target->id) }}" method='Post'>
-    @csrf
-    <input type='submit' value="clear history">
-</form> --}}
 
 <script>
     // var txt = document.getElementById('txt')

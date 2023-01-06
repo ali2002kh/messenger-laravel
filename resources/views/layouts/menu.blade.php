@@ -28,7 +28,11 @@
                     @endphp
                     @if ($u->is_user())
                         <a id="chat_{{$i}}"  class="chats" href="{{ route('chat', $u->id) }}">
+                        @if ($u == $user)
+                            <img src="{{ asset('storage/img/saved-messages.jpg') }}" alt="profile">
+                        @else
                             <img src="{{ asset('storage/profile/'.$u->profile->image) }}" alt="profile">
+                        @endif   
                     @else
                         <a id="chat_{{$i}}"  class="chats" href="{{ route('group.chat', $u->id) }}">
                             <img src="{{ asset('storage/group/'.$u->image) }}" alt="group">
@@ -36,10 +40,10 @@
                         
                         <div class="nameandlastmassage">
 
-                            @if ($u->is_user())
-                                <p class="name">{{ $u->name() }}</p><br>
+                            @if ($u->is_user() && $u == $user)
+                            <p class="name">Saved Messages</p><br>
                             @else
-                                <p class="name">{{ $u->name }}</p><br>
+                                <p class="name">{{ $u->name() }}</p><br>
                             @endif
                         
                             @if ($u->last_message($user->id))
@@ -49,10 +53,12 @@
                                         // document.getElementById("chat_{{$i}}")
                                     </script>
                                 @endif
+                                @if (!$u->is_user() || $u != $user)
                                 <div class="lastmassageandsender">
                                     <div class="sendername">{{ $u->last_message($user->id)->sender()->name() }}:</div>
                                     <div class="lastmassage">{{ $u->last_message($user->id)->body }}</div>
                                 </div>
+                                @endif
                             @endif
 
                         </div>

@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="css/friend.css">
 </head>
 <body>
-    {{-- <form> --}}
-        <div class="form"> 
+    <div class="form"> 
         <h1>جستجو</h1>
         <div class="searchbox">
             <form action="{{ route('friend.search') }}" method='Post'>
@@ -21,21 +20,29 @@
             </form>
         </div>
         @if (isset($result))
-            @if (!$result)
+            @if (!$result || $result==auth()->user())
             <div class="notfound">not found</div>
             @else
             <div class="user">
                 <div class="username">{{ $result->username }}</div>
                 @if ($result->is_friend(auth()->id()))
-                    <button class="user-btn">remove</button>
+                    <a href="{{ route('friend.remove', $result->id) }}">
+                        <button class="user-btn">remove</button>
+                    </a>
                 @else
                     @if (auth()->user()->requested_to($result->id))
-                        <button class="user-btn">accept</button>
+                        <a href="{{ route('friend.undo_request', $result->id) }}">
+                            <button class="user-btn">undo</button>
+                        </a>
                     @else
                         @if ($result->requested_to(auth()->id()))
-                            <button class="user-btn">undo</button>
+                            <a href="{{ route('friend.accept', $result->id) }}">
+                                <button class="user-btn">accept</button> 
+                            </a>   
                         @else
-                            <button class="user-btn">request</button>
+                            <a href="{{ route('friend.send_request', $result->id) }}">
+                                <button class="user-btn">request</button>
+                            </a>
                         @endif
                     @endif
                 @endif
@@ -54,23 +61,6 @@
                 <a href="{{ route('friend.accept', $s->id) }}"><button>قبول</button></a>
             </div>
         @endforeach
-        </div>
-    {{-- </form> --}}
+    </div>
 </body>
 </html>
-
-{{-- @if ($result->is_friend(auth()->id())) --}}
-    {{-- 1 --}}
-{{-- @else --}}
-    {{-- @if (auth()->user()->requested_to($result->id)) --}}
-        {{-- 2 --}}
-    {{-- @else --}}
-        {{-- @if ($result->requested_to(auth()->id())) --}}
-            {{-- 3 --}}
-        {{-- @else --}}
-            {{-- 4 --}}
-        {{-- @endif --}}
-    {{-- @endif --}}
-{{-- @endif --}}
-
-

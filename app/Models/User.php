@@ -107,7 +107,7 @@ class User extends Authenticatable {
         $all_groups = $this->groups();
 
         foreach ($all_users as $u) {
-            if ($u->last_message($this->id)) {
+            if ($u->last_message($this->id) && $u!=$this) {
                 $result[] = $u;
             }
         }
@@ -126,7 +126,7 @@ class User extends Authenticatable {
     }
 
     public function menu() {
-        return array_unique(array_merge(array_unique(array_merge($this->allHasChatWith(), $this->friends())), $this->groups()));
+        return array_merge([$this], array_unique(array_merge(array_unique(array_merge($this->allHasChatWith(), $this->friends())), $this->groups())));
     }
 
     public function is_user() {

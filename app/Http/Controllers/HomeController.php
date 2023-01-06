@@ -34,7 +34,6 @@ class HomeController extends Controller {
         }
 
         $messages = $sended->union($received)->sortBy('id');
-
         $contacts = $user->menu();
 
         return view('chat', compact('messages', 'target', 'all_users', 'user', 'contacts'));
@@ -44,7 +43,6 @@ class HomeController extends Controller {
 
         $user = Auth::user();
         $all_users = User::all();
-
         $contacts = $user->menu();
 
         return view('home', compact('user', 'contacts', 'all_users'));

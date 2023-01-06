@@ -9,6 +9,12 @@ class Friend extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'sender',
+        'receiver',
+        'accepted',
+    ];
+
     public function sender() {
 
         return $this->belongsTo('App\Models\User', 'id', 'sender');
