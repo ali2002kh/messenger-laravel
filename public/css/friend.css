@@ -41,6 +41,8 @@ label{
     display: block;
 }
 input{
+    color: #8883f8;
+    padding-left: 10px;
     height: 50px;
     width: 100%;
     background-color: #8983f836;
@@ -90,6 +92,7 @@ li{
     display: inline;
 }
 .searchbox input{
+    text-align: left;
     margin-top: 0;
 }
 .search{

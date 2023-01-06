@@ -26,9 +26,19 @@
             @else
             <div class="user">
                 <div class="username">{{ $result->username }}</div>
-                <button class="user-btn">
-                    درخواست
-                </button>
+                @if ($result->is_friend(auth()->id()))
+                    <button class="user-btn">remove</button>
+                @else
+                    @if (auth()->user()->requested_to($result->id))
+                        <button class="user-btn">accept</button>
+                    @else
+                        @if ($result->requested_to(auth()->id()))
+                            <button class="user-btn">undo</button>
+                        @else
+                            <button class="user-btn">request</button>
+                        @endif
+                    @endif
+                @endif
             </div>
             @endif
         @endif
