@@ -47,14 +47,26 @@
                             @endif
                         
                             @if ($u->last_message($user->id))
-                                @if (!$u->last_message($user->id)->is_sender($user->id) && $u->last_message($user->id)->seen == false) 
+                                {{-- @if (!$u->last_message($user->id)->is_sender($user->id) && $u->last_message($user->id)->seen == false) 
                                     <script>
-                                        
-                                        // document.getElementById("chat_{{$i}}")
+                                        function unread_massage(){
+                                            var number = document.getElementById("chat_{{$i}}");
+                                            document.getElementById("unread_number").innerHTML = number;
+                                        }
                                     </script>
-                                @endif
+                                    <div class="unread"></div>
+                                @endif --}}
                                 @if (!$u->is_user() || $u != $user)
                                 <div class="lastmassageandsender">
+                                    @if (!$u->last_message($user->id)->is_sender($user->id) && $u->last_message($user->id)->seen == false) 
+                                        <script>
+                                            function unread_massage(){
+                                                var number = document.getElementById("chat_{{$i}}");
+                                                document.getElementById("unread_number").innerHTML = number;
+                                            }
+                                        </script>
+                                        <div class="unread"></div>
+                                    @endif
                                     <div class="sendername">{{ $u->last_message($user->id)->sender()->name() }}:</div>
                                     <div class="lastmassage">{{ $u->last_message($user->id)->body }}</div>
                                 </div>

@@ -123,6 +123,7 @@ button:hover{
     width: max-content;
 }
 .lastmassageandsender{
+    align-items: center;
     display: flex;
     white-space: nowrap; 
     overflow: hidden;
@@ -137,4 +138,11 @@ button:hover{
     left: 10px;
     padding: 10px;
     cursor: pointer;
+}
+.unread{
+    margin: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #8883f8;
 }

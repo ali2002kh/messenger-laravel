@@ -29,7 +29,7 @@ form *{
     border: none;
     text-align: center;
 } */
-form{
+.search-div{
     margin: 50px 0 50px 0;
     display: flex;
 }
@@ -51,16 +51,17 @@ input{
 }
 
 button{
-    width: 20%;
+    height: max-content;
     background-color: #8883f8;
     color: #080710; 
-    padding: 15px 0;
+    padding: 15px ;
     border-radius: 10px;
     cursor: pointer;
     transition-duration: 0.5s;
 }
 
 a{
+    color: #8883f8;
     text-decoration: none;
     transition-duration: 0.1s;
 }
@@ -110,7 +111,6 @@ li{
     display: flex;
     align-items: center;
     text-align: center;
-    margin: 5px;
 }
 .chats img{
     width: 40px;
@@ -122,7 +122,7 @@ li{
 .chats:hover{
     font-size: medium;
 }
-.chats button{
+/* .chats button{
     margin-top: 0;
     margin-bottom: 0;
     width: 100px;
@@ -135,8 +135,9 @@ li{
     border-radius: 10px;
     cursor: pointer;
     transition-duration: 0.5s;
-}
+} */
 .form{
+    color: #8883f8;
     background-color: rgba(255, 255, 255, 0.1);
     position: absolute;
     transform: translate(-50%,-50%);
@@ -171,4 +172,16 @@ li{
 }
 .username{
     padding-left: 10px;
+}
+.reject-btn{
+    background-color: #a94442;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+.accept-btn{
+    background-color: #69ff6e;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
 }

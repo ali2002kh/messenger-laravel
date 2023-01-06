@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="css/friend.css">
 </head>
 <body>
+    <a href="{{route('home') }}">بازگشت</a>
     <div class="form"> 
         <h1>جستجو</h1>
         <div class="searchbox">
-            <form action="{{ route('friend.search') }}" method='Post'>
+            <form class="search-div" action="{{ route('friend.search') }}" method='Post'>
                 @csrf
                 <input class="search" type="search" name="search" placeholder="   جستجو....">
                 <button class="search-btn" type="submit">
@@ -24,7 +25,14 @@
             <div class="notfound">not found</div>
             @else
             <div class="user">
-                <div class="username">{{ $result->username }}</div>
+                <div class="chats">
+                    <a class="chats" href="{{ route('show_profile', $result->id) }}">
+                        <img src="{{ asset('storage/profile/'.$result->profile->image) }}" alt="profile">
+                        <div class="nameandlastmassage">
+                            <p class="name">{{ $result->name() }}</p>
+                        </div>
+                    </a>
+                </div>
                 @if ($result->is_friend(auth()->id()))
                     <a href="{{ route('friend.remove', $result->id) }}">
                         <button class="user-btn">remove</button>
@@ -49,6 +57,7 @@
             </div>
             @endif
         @endif
+        <br><br>requested list<br>
         @foreach ($senders as $s)
             <div class="chats">
                 <a class="chats" href="{{ route('show_profile', $s->id) }}">
@@ -57,8 +66,8 @@
                         <p class="name">{{ $s->name() }}</p>
                     </div>
                 </a>
-                <a href="{{ route('friend.deny', $s->id) }}"><button>رد</button></a>
-                <a href="{{ route('friend.accept', $s->id) }}"><button>قبول</button></a>
+                <a href="{{ route('friend.deny', $s->id) }}"><button class="reject-btn">رد</button></a>
+                <a href="{{ route('friend.accept', $s->id) }}"><button class="accept-btn">قبول</button></a>
             </div>
         @endforeach
     </div>
