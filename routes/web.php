@@ -116,11 +116,11 @@ Route::post('/group/{group_id}', [GroupController::class, 'update'])
 Route::get('/group/{group_id}/leave', [GroupController::class, 'leave'])
 ->name('group.leave');
 
-Route::post('/group/{group_id}/{user_id}/remove', [GroupController::class, 'remove'])
+Route::get('/group/{group_id}/{user_id}/remove', [GroupController::class, 'remove'])
 ->name('group.remove');
 
 Route::get('/group/{group_id}/add', [GroupController::class, 'add_page'])
 ->name('group.add_page');
 
-Route::post('/group/{group_id}/{user_id}/add', [GroupController::class, 'add'])
+Route::get('/group/{group_id}/{user_id}/add', [GroupController::class, 'add'])
 ->name('group.add');

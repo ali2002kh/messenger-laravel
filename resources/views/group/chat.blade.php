@@ -23,29 +23,27 @@
                 <img src="{{ asset('storage/group/'.$group->image) }}">
                 <p class="name">{{ $group->name }}</p>
             </a>
+            @if (!auth()->user()->is_owner($group->id))
+                <a href="{{ route('group.leave', $group->id) }}"><button>leave</button></a>
+            @endif
             <a href="{{ route('home') }}"><button>Back</button></a>
         </h3>
     </div>
     @foreach ($messages as $m) 
-        <div 
         @if ($m->is_sender($user->id))
-        class="massage self"
-        @else 
-        class="massage other"
-        @endif
-        >
+        <div class="massage self">
+            <form class="delete" action="{{ route('group.delete_message', $m->id) }}" method='Post'>
+                @csrf
+                <input class="delete-btn" type='submit' value="x">
+            </form>
             {{ $m->body }}
         </div>
-        {{-- <form action="{{ route('delete_message', $m->id) }}" method='Post'>
-            @csrf
-            <input type='submit' value="delete">
-        </form> --}}
+        @else 
+        <div class="massage other">
+            {{ $m->body }}
+        </div>
+        @endif
     @endforeach
-    {{-- <div class="msgbox">
-        <textarea></textarea>
-        <div class="send"><a>send</a></div>
-    </div> --}}
-    {{-- <hr> --}}
 <form class="msgbox" id="myForm" action="{{ route('group.send_message', $group->id) }}" method='Post'>
     @csrf
     <textarea id="txt" name='body' placeholder='type your message...'></textarea>

@@ -27,15 +27,29 @@ class Group extends Model {
         return $members;
     }
 
+    public function members_count() {
+        return sizeof($this->members());
+    }
+
     public function remove($user_id) {
         $membership = Membership::all()
         ->where('group_id', $this->id)
         ->where('user_id', $user_id)
+        ->first();
         ;
+
+        if ($membership->role == 'owner') {
+            $group = Group::find($membership->group_id);
+            PublicMessage::where('receiver', $group->id)->delete();
+            Membership::where('group_id', $group->id)->delete();
+            $group->delete();
+            return 0;
+        }
+
         $membership->delete();
     }
 
-    public function include($user_id) {
+    public function includes($user_id) {
         return Membership::all()
         ->where('group_id', $this->id)
         ->where('user_id', $user_id)

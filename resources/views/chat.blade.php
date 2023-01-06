@@ -38,19 +38,8 @@
         </h3>
     </div>
     @foreach ($messages as $m) 
-        {{-- <div 
-        @if ($m->is_sender($user->id))
-        class="massage self"
-        @else 
-        class="massage other"
-        @endif
-        >
-        <button>x</button>
-            {{ $m->body }}
-        </div> --}}
         @if ($m->is_sender($user->id))
         <div class="massage self">
-            {{-- <button class="delete-btn" onclick="">x</button> --}}
             <form class="delete" action="{{ route('delete_message', $m->id) }}" method='Post'>
                 @csrf
                 <input class="delete-btn" type='submit' value="x">
@@ -62,10 +51,6 @@
             {{ $m->body }}
         </div>
         @endif
-        {{-- <form action="{{ route('delete_message', $m->id) }}" method='Post'>
-            @csrf
-            <input type='submit' value="delete">
-        </form> --}}
     @endforeach
 <form class="msgbox" id="myForm" action="{{ route('send_message', $target->id) }}" method='Post'>
     @csrf

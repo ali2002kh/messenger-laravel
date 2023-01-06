@@ -124,7 +124,7 @@ class GroupController extends Controller {
         $group->info = $request->get('info');
         $group->save();
 
-        return redirect()->route('home');
+        return redirect()->route('group.show', $group_id);
     }
 
     public function leave($group_id) {

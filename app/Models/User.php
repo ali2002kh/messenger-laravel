@@ -133,4 +133,17 @@ class User extends Authenticatable {
         return true;
     }
 
+    public function is_owner($group_id) {
+
+        $membership = Membership::all()
+        ->where('group_id', $group_id)
+        ->where('user_id', $this->id)
+        ->first();
+        ;
+
+        if ($membership->role == 'owner') {
+            return true;
+        }
+        return false;
+    }
 }
