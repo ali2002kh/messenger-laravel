@@ -74,7 +74,7 @@
             <a class="firend" href="{{ route('friend.index') }}">
                 friends
             </a>
-            <a class="firend" href="{{ route('group.create') }}">
+            <a class="group" href="{{ route('group.create') }}">
                 new group
             </a>
         </div>

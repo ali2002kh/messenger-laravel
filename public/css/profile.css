@@ -5,7 +5,7 @@
     align-items: center;
 }
 @media screen and (max-width: 1000px){
-    form{
+    .form{
         display: block !important;
     }
 }
@@ -17,7 +17,7 @@
         margin-left: 20px;
         margin-right: 20px;
     }
-    form{
+    .form{
         justify-content: space-around;
         height: 400px;
     }
@@ -27,7 +27,7 @@ body{
     background-color: #151525;
 }
 
-form{
+.form{
     background-color: rgba(255, 255, 255, 0.1);
     position: absolute;
     transform: translate(-50%,-50%);
@@ -42,7 +42,7 @@ form{
     padding: 10px;
     display: flex;
 }
-form *{
+.form *{
     color: #8883f8;
     outline: none;
     border: none;

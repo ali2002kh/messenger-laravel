@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../css/edit.css">
 </head>
 <body>
-    <form   action="{{ route('update_profile') }}" method='Post' 
+    <a href="{{route('home') }}">بازگشت</a>
+    <form class="form" action="{{ route('update_profile') }}" method='Post' 
             enctype="multipart/form-data">
         @csrf
         <img src="{{ asset('storage/profile/'.$profile->image) }}">

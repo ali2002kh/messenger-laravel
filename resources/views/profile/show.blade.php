@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="../css/profile.css">
 </head>
 <body>
-    <form>
+    <div class="form">
         <img src="{{ asset('storage/profile/'.$user->profile->image) }}"><br>
             {{-- <div class="fname">
                 {{ $user->profile->first_name }}
@@ -74,6 +74,6 @@
                 {{ $user->username }}
             </div>
         </div>
-    </form>
+    </div>
 </body>
 </html>

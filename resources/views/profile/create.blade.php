@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/edit.css">
 </head>
 <body>
-    <form   action="{{ route('store_profile') }}" method='Post' 
+    <form class="form"  action="{{ route('store_profile') }}" method='Post' 
             enctype="multipart/form-data">
         @csrf
         <img src="{{ asset('storage/img/default.jpg') }}">
