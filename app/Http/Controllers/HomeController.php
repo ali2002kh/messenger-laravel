@@ -19,7 +19,6 @@ class HomeController extends Controller {
         $request->session()->put('prev', 'chat');
 
         $user = Auth::user();
-        $all_users = User::all();
         $target = User::find($target_id); 
 
         $sended = Message::all()
@@ -37,20 +36,14 @@ class HomeController extends Controller {
         }
 
         $messages = $sended->union($received)->sortBy('id');
-        $contacts = $user->menu();
 
-        return view('chat', compact('messages', 'target', 'all_users', 'user', 'contacts'));
+        return view('chat', compact('messages', 'target'));
     }
 
     public function index(Request $request) {
 
         $request->session()->put('prev', 'home');
-
-        $user = Auth::user();
-        $all_users = User::all();
-        $contacts = $user->menu();
-
-        return view('home', compact('user', 'contacts', 'all_users'));
+        return view('home');
     }
 
     public function send_message(Request $request, int $target_id) {

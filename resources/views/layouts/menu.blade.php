@@ -13,16 +13,16 @@
             <div class="head">
                 <h3 class="header">
                     Nili
-                    <a href="{{ route('show_profile', $user->id) }}">{{$user->username}}</a>
+                    <a href="{{ route('show_profile', auth()->id()) }}">{{auth()->user()->username}}</a>
                     <a href="{{ route('logout') }}"><button>Log Out</button></a>
                 </h3>
                 
             </div>
             <div class="chatlist">
-                @foreach ($contacts as $u) 
+                @foreach (auth()->user()->menu() as $u) 
                     @if ($u->is_user())
                         <a class="chats" href="{{ route('chat', $u->id) }}">
-                        @if ($u == $user)
+                        @if ($u == auth()->user())
                             <img src="{{ asset('storage/img/saved-messages.jpg') }}" alt="profile">
                         @else
                             <img src="{{ asset('storage/profile/'.$u->profile->image) }}" alt="profile">
@@ -34,26 +34,26 @@
                         
                         <div class="nameandlastmassage">
 
-                            @if ($u->is_user() && $u == $user)
+                            @if ($u->is_user() && $u == auth()->user())
                             <p class="name">Saved Messages</p><br>
                             @else
                                 <p class="name">{{ $u->name() }}</p><br>
                             @endif
                         
-                            @if ($u->last_message($user->id))
-                                @if (!$u->is_user() || $u != $user)
+                            @if ($u->last_message(auth()->id()))
+                                @if (!$u->is_user() || $u != auth()->user())
                                 <div class="lastmassageandsender">
-                                    @if (!$u->last_message($user->id)->is_sender($user->id) && $u->last_message($user->id)->seen == false)
+                                    @if (!$u->last_message(auth()->id())->is_sender(auth()->id()) && $u->last_message(auth()->id())->seen == false)
                                         <div class="unread"></div>
                                     @endif
                                     @if (!$u->is_user()) 
-                                        @if (!$u->last_message($user->id)->is_sender($user->id))
-                                            <div class="sendername">{{ $u->last_message($user->id)->sender()->name() }}: </div>
+                                        @if (!$u->last_message(auth()->id())->is_sender(auth()->id()))
+                                            <div class="sendername">{{ $u->last_message(auth()->id())->sender()->name() }}: </div>
                                         @else
                                             <div class="sendername">you: </div>
                                         @endif
                                     @endif
-                                    <div class="lastmassage">{{ $u->last_message($user->id)->body() }}</div>
+                                    <div class="lastmassage">{{ $u->last_message(auth()->id())->body() }}</div>
                                 </div>
                                 @endif
                             @endif

@@ -34,9 +34,7 @@ class GroupController extends Controller {
             $tmp->save();
         }
 
-        $contacts = $user->menu();
-
-        return view('group.chat', compact('messages', 'group', 'user', 'contacts'));
+        return view('group.chat', compact('messages', 'group'));
     }
 
     public function send_message(Request $request, int $group_id) {

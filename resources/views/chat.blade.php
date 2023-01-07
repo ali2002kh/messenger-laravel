@@ -19,7 +19,7 @@
 @section('chat')
     <div class="head">
         <h3 class="header">
-            @if ($target == $user)
+            @if ($target == auth()->user())
             <a class="chats" id="prf">
                 <img src="{{ asset('storage/img/saved-messages.jpg') }}" alt="profile">
                 <p class="name">Saved Messages</p>
@@ -38,7 +38,7 @@
         </h3>
     </div>
     @foreach ($messages as $m) 
-        @if ($m->is_sender($user->id))
+        @if ($m->is_sender(auth()->id()))
         <div class="massage self">
             <form class="delete" action="{{ route('delete_message', $m->id) }}" method='Post'>
                 @csrf

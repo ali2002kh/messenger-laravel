@@ -31,7 +31,7 @@
         </h3>
     </div>
     @foreach ($messages as $m) 
-        @if ($m->is_sender($user->id))
+        @if ($m->is_sender(auth()->id()))
         <div class="massage self">
             <form class="delete" action="{{ route('group.delete_message', $m->id) }}" method='Post'>
                 @csrf
