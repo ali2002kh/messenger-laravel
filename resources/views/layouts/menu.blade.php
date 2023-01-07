@@ -19,22 +19,16 @@
                 
             </div>
             <div class="chatlist">
-                @php
-                    $i = 0;
-                @endphp
                 @foreach ($contacts as $u) 
-                    @php
-                        $i++;
-                    @endphp
                     @if ($u->is_user())
-                        <a id="chat_{{$i}}"  class="chats" href="{{ route('chat', $u->id) }}">
+                        <a class="chats" href="{{ route('chat', $u->id) }}">
                         @if ($u == $user)
                             <img src="{{ asset('storage/img/saved-messages.jpg') }}" alt="profile">
                         @else
                             <img src="{{ asset('storage/profile/'.$u->profile->image) }}" alt="profile">
                         @endif   
                     @else
-                        <a id="chat_{{$i}}"  class="chats" href="{{ route('group.chat', $u->id) }}">
+                        <a class="chats" href="{{ route('group.chat', $u->id) }}">
                             <img src="{{ asset('storage/group/'.$u->image) }}" alt="group">
                     @endif
                         
@@ -47,22 +41,19 @@
                             @endif
                         
                             @if ($u->last_message($user->id))
-                                {{-- @if (!$u->last_message($user->id)->is_sender($user->id) && $u->last_message($user->id)->seen == false) 
-                                    <script>
-                                        function unread_massage(){
-                                            var number = document.getElementById("chat_{{$i}}");
-                                            document.getElementById("unread_number").innerHTML = number;
-                                        }
-                                    </script>
-                                    <div class="unread"></div>
-                                @endif --}}
                                 @if (!$u->is_user() || $u != $user)
                                 <div class="lastmassageandsender">
                                     @if (!$u->last_message($user->id)->is_sender($user->id) && $u->last_message($user->id)->seen == false)
                                         <div class="unread"></div>
                                     @endif
-                                    <div class="sendername">{{ $u->last_message($user->id)->sender()->name() }}:</div>
-                                    <div class="lastmassage">{{ $u->last_message($user->id)->body }}</div>
+                                    @if (!$u->is_user()) 
+                                        @if (!$u->last_message($user->id)->is_sender($user->id))
+                                            <div class="sendername">{{ $u->last_message($user->id)->sender()->name() }}: </div>
+                                        @else
+                                            <div class="sendername">you: </div>
+                                        @endif
+                                    @endif
+                                    <div class="lastmassage">{{ $u->last_message($user->id)->body() }}</div>
                                 </div>
                                 @endif
                             @endif

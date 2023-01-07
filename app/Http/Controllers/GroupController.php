@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\Membership;
 use App\Models\PublicMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class GroupController extends Controller {
     
@@ -43,7 +44,7 @@ class GroupController extends Controller {
         $user = auth()->user();
 
         $message = new PublicMessage([
-            'body' => $request->get('body'),
+            'body' => Crypt::encryptString($request->get('body')),
             'sender' => $user->id,
             'receiver' => $group_id,
             'seen' => false,

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class PublicMessage extends Model
 {
@@ -41,5 +43,13 @@ class PublicMessage extends Model
             return true;
         }
         return false;
+    }
+
+    public function body() {
+        try {
+            return Crypt::decryptString($this->body);
+        } catch (DecryptException $e) {
+            return $this->body;
+        }
     }
 }

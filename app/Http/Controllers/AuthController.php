@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller {
     
@@ -23,7 +23,7 @@ class AuthController extends Controller {
         $users = User::all();
         foreach ($users as $user) {
             if ($user->number == $request->get('number')) {
-                if ($user->password == $request->get('password')) {
+                if (Hash::check($request->get('password'), $user->password)) {
                     Auth::login($user);
                     if ($user->profile) {
                         return redirect('home');
@@ -65,7 +65,7 @@ class AuthController extends Controller {
         $user = new User([
             'username' => $request->get('username'),
             'number' => $request->get('number'),
-            'password' => $request->get('password2'),
+            'password' => Hash::make($request->get('password2')),
         ]);
         $user->save();
         Auth::login($user);

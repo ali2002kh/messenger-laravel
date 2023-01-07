@@ -37,7 +37,7 @@
                 @csrf
                 <input class="delete-btn" type='submit' value="x">
             </form>
-            {{ $m->body }}
+            {{ $m->body() }}
         </div>
         @else 
         <div class="massage other">
@@ -46,7 +46,7 @@
                 <p class="name">{{ $m->sender()->name() }}</p>
             </a>
             <div>
-                {{ $m->body }}
+                {{ $m->body() }}
             </div>
         </div>
         @endif

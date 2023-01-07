@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller {
 
@@ -57,7 +58,7 @@ class HomeController extends Controller {
         $user = Auth::user();
 
         $message = new Message([
-            'body' => $request->get('body'),
+            'body' => Crypt::encryptString($request->get('body')),
             'sender' => $user->id,
             'receiver' => $target_id,
             'seen' => false,
