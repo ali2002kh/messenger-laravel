@@ -22,6 +22,7 @@
             <a class="chats" id="prf" href="{{ route('group.show', $group->id) }}">
                 <img src="{{ asset('storage/group/'.$group->image) }}">
                 <p class="name">{{ $group->name }}</p>
+                {{ $group->members_count() }} عضو
             </a>
             @if (!auth()->user()->is_owner($group->id))
                 <a href="{{ route('group.leave', $group->id) }}"><button>leave</button></a>
@@ -40,9 +41,9 @@
         </div>
         @else 
         <div class="massage other">
-            <a class="chats groups" href="{{ route('chat', $user->id) }}">
-                <img class="user-img" src="{{ asset('storage/profile/'.$user->profile->image) }}" alt="profile">
-                <p class="name">{{ $user->name() }}</p>
+            <a class="chats groups" href="{{ route('show_profile', $m->sender) }}">
+                <img class="user-img" src="{{ asset('storage/profile/'.$m->sender()->profile->image) }}" alt="profile">
+                <p class="name">{{ $m->sender()->name() }}</p>
             </a>
             <div>
                 {{ $m->body }}

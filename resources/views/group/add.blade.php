@@ -14,12 +14,12 @@
             {{-- {{ $f->name() }} --}}
             <div class="user">
                 <div class="chats">
-                    <a class="chats" href="{{ route('show_profile', $f->id) }}">
+                    <div class="chats">
                         <img src="{{ asset('storage/profile/'.$f->profile->image) }}" alt="profile">
                         <div class="nameandlastmassage">
                             <p class="name">{{ $f->name() }}</p>
                         </div>
-                    </a>
+                    </div>
                 </div>
                 <a href={{ route('group.add', [$group->id, $f->id]) }}>
                     <button class="user-btn">add</button>

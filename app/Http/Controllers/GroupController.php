@@ -13,7 +13,10 @@ class GroupController extends Controller {
         $this->middleware('auth');
     }
 
-    public function chat($group_id) {
+    public function chat(Request $request, $group_id) {
+
+        $request->session()->put('prev', 'group.chat');
+        $request->session()->put('group_id', $group_id);
 
         $group = Group::find($group_id);
         $user = auth()->user();
@@ -92,7 +95,9 @@ class GroupController extends Controller {
         return redirect()->route('home');
     }
 
-    public function show($group_id) {
+    public function show(Request $request, $group_id) {
+
+        $request->session()->put('prev', 'group.show');
         
         $group = Group::find($group_id);
         $members = $group->members();

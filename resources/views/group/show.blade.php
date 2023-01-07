@@ -8,51 +8,37 @@
     <link rel="stylesheet" href="../../css/profile.css">
 </head>
 <body>
-    <a href="{{route('home') }}">بازگشت</a>
     <div class="form">
         <img src="{{ asset('storage/group/'.$group->image) }}"><br>
-            {{-- <div class="fname">
-                {{ $user->profile->first_name }}
-            </div>
-            <div class="lname">
-                {{$user->profile->last_name }}
-            </div> --}}
         <div class="info">
-                تعداد اعضای گروه : {{ $group->members_count() }}<br><br> : اعضای گروه
-                @foreach ($members as $u)
-                    <br>
-                    <div class="member">{{ $u->name() }}
-                        @if (!$u->is_owner($group->id) && auth()->user()->is_owner($group->id))
-                            <a href={{ route('group.remove', [$group->id, $u->id]) }}>remove</a>
-                        @endif
-                    </div>
-                @endforeach
-                <a href={{ route('group.leave', $group->id) }}>
-                    @if (auth()->user()->is_owner($group->id))
-                        delete group
-                    @else
-                        leave group
+            @foreach ($members as $u)
+                <br>
+                <a class="chats"
+                @if ($u->id != auth()->id())
+                    href="{{ route('show_profile', $u->id) }}"
+                @endif
+                >
+                <div class="member">{{ $u->name() }}
+                    @if (!$u->is_owner($group->id) && auth()->user()->is_owner($group->id))
+                        <a href={{ route('group.remove', [$group->id, $u->id]) }}>remove</a>
                     @endif
+                </div>
                 </a>
+            @endforeach
+            <a href={{ route('group.leave', $group->id) }}>
                 @if (auth()->user()->is_owner($group->id))
-                    <a href={{ route('group.edit', $group->id) }}>edit group</a>
+                    delete group
+                @else
+                    leave group
                 @endif
-                @if (auth()->user()->is_owner($group->id))
-                    <a href={{ route('group.add_page', $group->id) }}>add member</a>
-                @endif
-                <a href="{{ route('group.chat', $group->id) }}">back</a>
-            {{-- <div class="name">
-                <h3>نام</h3>
-                {{ $user->profile->first_name }} {{ $user->profile->last_name }}
-            </div>
-            <div class="bio">
-                <h3>بایو</h3>
-                {{ $user->profile->bio }}
-            </div>
-            <div class="username">
-                <h3>نام کاربری</h3>
-                {{ $user->username }}
-            </div> --}}
+            </a>
+            @if (auth()->user()->is_owner($group->id))
+                <a href={{ route('group.edit', $group->id) }}>edit group</a>
+            @endif
+            @if (auth()->user()->is_owner($group->id))
+                <a href={{ route('group.add_page', $group->id) }}>add member</a>
+            @endif
+            <a href="{{ route('group.chat', $group->id) }}">back</a>
         </div>
     </div>
 </body>

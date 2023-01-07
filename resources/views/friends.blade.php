@@ -10,7 +10,7 @@
 <body>
     <a href="{{route('home') }}">بازگشت</a>
     <div class="form"> 
-        <h1>جستجو</h1>
+        <h2>دوستان</h2>
         <div class="searchbox">
             <form class="search-div" action="{{ route('friend.search') }}" method='Post'>
                 @csrf
@@ -35,21 +35,21 @@
                 </div>
                 @if ($result->is_friend(auth()->id()))
                     <a href="{{ route('friend.remove', $result->id) }}">
-                        <button class="user-btn">remove</button>
+                        <button class="user-btn">حذف</button>
                     </a>
                 @else
                     @if (auth()->user()->requested_to($result->id))
                         <a href="{{ route('friend.undo_request', $result->id) }}">
-                            <button class="user-btn">undo</button>
+                            <button class="user-btn">لغو</button>
                         </a>
                     @else
                         @if ($result->requested_to(auth()->id()))
                             <a href="{{ route('friend.accept', $result->id) }}">
-                                <button class="user-btn">accept</button> 
+                                <button class="user-btn">قبول</button> 
                             </a>   
                         @else
                             <a href="{{ route('friend.send_request', $result->id) }}">
-                                <button class="user-btn">request</button>
+                                <button class="user-btn">درخواست</button>
                             </a>
                         @endif
                     @endif
@@ -57,7 +57,7 @@
             </div>
             @endif
         @endif
-        <br><br>requested list<br>
+        <br><br>لیست درخواست ها<br>
         @foreach ($senders as $s)
             <div class="chats">
                 <a class="chats" href="{{ route('show_profile', $s->id) }}">
