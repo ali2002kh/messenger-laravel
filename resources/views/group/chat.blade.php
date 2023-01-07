@@ -40,7 +40,13 @@
         </div>
         @else 
         <div class="massage other">
-            {{ $m->body }}
+            <a class="chats groups" href="{{ route('chat', $user->id) }}">
+                <img class="user-img" src="{{ asset('storage/profile/'.$user->profile->image) }}" alt="profile">
+                <p class="name">{{ $user->name() }}</p>
+            </a>
+            <div>
+                {{ $m->body }}
+            </div>
         </div>
         @endif
     @endforeach

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../css/edit.css">
 </head>
 <body>
+    <a href="{{route('home') }}">بازگشت</a>
     <form   action="{{ route('group.update', $group->id) }}" method='Post' 
             enctype="multipart/form-data">
         @csrf
