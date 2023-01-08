@@ -34,6 +34,12 @@ a{
     .msgbox{
         width: 100% !important;
     }
+    .firend{
+        scale: 0;
+    }
+    .group{
+        scale: 0;
+    }
 }
 
 .header {
@@ -170,6 +176,9 @@ textarea{
     transition-duration: 0.5s;
     font-weight: bold;
 }
+.group:hover,.firend:hover,.send:hover{
+    color: #a8a8f2;
+}
 textarea:focus{
     outline: none;
 }
@@ -217,6 +226,7 @@ textarea:focus{
     display: inline;
 }
 .firend{
+    transition-duration: 0.5s;
     background-color:#28274b;
     border-radius: 15px;
     font-weight: normal;
@@ -227,6 +237,7 @@ textarea:focus{
     cursor: pointer;
 }
 .group{
+    transition-duration: 0.5s;
     background-color:#28274b;
     border-radius: 15px;
     font-weight: normal;

@@ -65,34 +65,38 @@ input, textarea{
     padding: 10px;
 }
 
-button,.submit{
+.submit{
     margin: 10px;
-    width: 80%;
+    width: 30%;
     display: block;
     background-color: #8883f8;
     color: #080710;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 35%;
+    margin-right: 35%;
     border-radius: 10px;
     cursor: pointer;
     transition-duration: 0.5s;
 }
 
 a{
+    border-radius: 10px;
+    margin-left: 40% !important;
+    margin-right: 40% !important;
+    background-color: #121120;
+    font-size: large;
     text-decoration: none;
     transition-duration: 0.1s;
 }
 
-button ,.submit :hover{
+.submit:hover{
     background-color: #121120;
     color: #8883f8;
-    transition-duration: 0.5s;
 }
 
-a:hover{
+/* a:hover{
     font-size: large;
     transition-duration: 0.1s;
-}
+} */
 
 
 ul{

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../css/edit.css">
 </head>
 <body>
-    <a href="{{route('show_profile', $profile->user_id) }}">بازگشت</a>
     <form class="form" action="{{ route('update_profile') }}" method='Post' 
             enctype="multipart/form-data">
         @csrf
@@ -26,6 +25,7 @@
             <label for="bio">بایو</label>
             <textarea name='bio' placeholder='بایو' required>{{ $profile->bio }}</textarea>
             <input type='submit' value="ثبت"  class="submit">
+            <a href="{{route('show_profile', $profile->user_id) }}">&#11148;</a>
         </div>
     </form>
 </body>

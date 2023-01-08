@@ -23,55 +23,53 @@
                 <h5>نام کاربری</h5>
                 {{ $user->username }}
             </div>
-        </div>
-
-        @if ($user->id == auth()->id())
-            <a href="{{ route('edit_profile') }}">ویرایش</a>
+            @if ($user->id == auth()->id())
+            <a href="{{ route('edit_profile') }}">&#9998;</a>
         @else
-            <a href="{{route('chat', $user->id) }}">صفحه گفتگو</a>
+            <a href="{{route('chat', $user->id) }}">&#x1F4AC;</a>
         @endif
 
         @if ($request->session()->get('prev') == 'friends')
-            <a href="{{route('friend.index') }}">بازگشت</a>
+            <a href="{{route('friend.index') }}">&#11148;</a>
         @else
             @if ($user->id == auth()->id())
-                <a href="{{route('home') }}">بازگشت</a>
+                <a href="{{route('home') }}">&#11148;</a>
             @else
                 @if ($request->session()->get('prev') == 'group.chat')
-                    <a href="{{route('group.chat', $request->session()->get('group_id')) }}">بازگشت</a>
+                    <a href="{{route('group.chat', $request->session()->get('group_id')) }}">&#11148;</a>
                 @else
                     @if ($request->session()->get('prev') == 'group.show')
-                        <a href="{{route('group.show', $request->session()->get('group_id')) }}">بازگشت</a>
+                        <a href="{{route('group.show', $request->session()->get('group_id')) }}">&#11148;</a>
                     @else
-                        <a href="{{route('chat', $user->id) }}">بازگشت</a>
+                        <a href="{{route('chat', $user->id) }}">&#11148;</a>
                     @endif
                 @endif
             @endif
         @endif
-
         @if ($user->id != auth()->id())
             @if ($user->is_friend(auth()->id()))
                 <a href="{{ route('friend.remove', $user->id) }}">
-                    <button class="user-btn">remove</button>
+                    <button class="user-btn">&#10008;</button>
                 </a>
             @else
                 @if (auth()->user()->requested_to($user->id))
                     <a href="{{ route('friend.undo_request', $user->id) }}">
-                        <button class="user-btn">undo</button>
+                        <button class="user-btn">&#10550;</button>
                     </a>
                 @else
                     @if ($user->requested_to(auth()->id()))
                         <a href="{{ route('friend.accept', $user->id) }}">
-                            <button class="user-btn">accept</button> 
+                            <button class="user-btn">&#10004;</button> 
                         </a>   
                     @else
                         <a href="{{ route('friend.send_request', $user->id) }}">
-                            <button class="user-btn">request</button>
+                            <button class="user-btn">&#9757;</button>
                         </a>
                     @endif
                 @endif
             @endif
         @endif
+        </div>
     </div>
 </body>
 </html>
