@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../css/edit.css">
 </head>
 <body>
-    <a href="{{route('home') }}">بازگشت</a>
     <form   action="{{ route('group.store') }}" method='Post' 
             enctype="multipart/form-data">
         @csrf
@@ -21,6 +20,7 @@
             <label for="info">یادداشت</label>
             <textarea name='info' placeholder='یادداشت' required></textarea>
             <input type='submit' value="ثبت" class="submit">
+            <a href="{{route('home') }}">&#11148;</a>
         </div>
     </form>
 </body>

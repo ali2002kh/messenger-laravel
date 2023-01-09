@@ -21,13 +21,15 @@
         <h3 class="header">
             <a class="chats" id="prf" href="{{ route('group.show', $group->id) }}">
                 <img src="{{ asset('storage/group/'.$group->image) }}">
+                <div class="group-name">
                 <p class="name">{{ $group->name }}</p>
-                {{ $group->members_count() }} عضو
+                <p style="font-size: 10px">تعداد اعضا: {{ $group->members_count() }} </p>
+                </div>
             </a>
             @if (!auth()->user()->is_owner($group->id))
-                <a href="{{ route('group.leave', $group->id) }}"><button>leave</button></a>
+                <a href="{{ route('group.leave', $group->id) }}"><button>ترک گروه</button></a>
             @endif
-            <a href="{{ route('home') }}"><button>Back</button></a>
+            <a style="scale:1.5 " href="{{ route('home') }}"><button >&#11148;</button></a>
         </h3>
     </div>
     @foreach ($messages as $m) 
@@ -35,7 +37,7 @@
         <div class="massage self">
             <form class="delete" action="{{ route('group.delete_message', $m->id) }}" method='Post'>
                 @csrf
-                <input class="delete-btn" type='submit' value="x">
+                <input class="delete-btn" type='submit' value="&#10008;">
             </form>
             {{ $m->body() }}
         </div>
@@ -54,7 +56,7 @@
 <form class="msgbox" id="myForm" action="{{ route('group.send_message', $group->id) }}" method='Post'>
     @csrf
     <textarea id="txt" name='body' placeholder='type your message...'></textarea>
-    <input class="send" type='button' value="send" onclick="sendAndDelete()">
+    <input style="scale: 1.6" class="send" type='button' value="&#10148;" onclick="sendAndDelete()">
 </form>
 {{-- <hr> --}}
 {{-- <form action="{{ route('clear', $target->id) }}" method='Post'>

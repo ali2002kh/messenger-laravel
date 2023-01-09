@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../../css/friend.css">
 </head>
 <body>
-    <a href="{{ route('group.show', $group->id) }}">بازگشت</a>
     <div class="form">
         @foreach ($friendsNotInGroup as $f)
             {{-- {{ $f->name() }} --}}
@@ -21,12 +20,13 @@
                         </div>
                     </div>
                 </div>
-                <a href={{ route('group.add', [$group->id, $f->id]) }}>
-                    <button class="user-btn">add</button>
+                <a class="user-btn" href={{ route('group.add', [$group->id, $f->id]) }}>
+                    <button>&#43;</button>
                 </a>
             </div>
         @endforeach
-        {{-- <a href="{{ route('group.show', $group->id) }}">back</a> --}}
+        <br>
+        <a class="back-btn" href="{{ route('group.show', $group->id) }}">&#11148;</a>
     </div>
 </body>
 </html>

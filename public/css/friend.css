@@ -73,7 +73,6 @@ button:hover{
 }
 
 a:hover{
-    font-size: large;
     transition-duration: 0.1s;
 }
 
@@ -184,4 +183,14 @@ li{
     height: 60px;
     width: 60px;
     border-radius: 50%;
+}
+.back-btn{
+    background-color: #080710;
+    padding: 5px;
+    border-radius: 10px;
+}
+.user-btn button{
+    scale: 1.7;
+    padding: 9px !important;
+    font-weight: bold;
 }

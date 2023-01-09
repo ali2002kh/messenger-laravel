@@ -23,6 +23,7 @@
                 <h5>نام کاربری</h5>
                 {{ $user->username }}
             </div>
+            <br>
             @if ($user->id == auth()->id())
             <a href="{{ route('edit_profile') }}">&#9998;</a>
         @else
@@ -49,21 +50,21 @@
         @if ($user->id != auth()->id())
             @if ($user->is_friend(auth()->id()))
                 <a href="{{ route('friend.remove', $user->id) }}">
-                    <button class="user-btn">&#10008;</button>
+                    <button class="user-btn">حذف</button>
                 </a>
             @else
                 @if (auth()->user()->requested_to($user->id))
                     <a href="{{ route('friend.undo_request', $user->id) }}">
-                        <button class="user-btn">&#10550;</button>
+                        <button class="user-btn">لغو</button>
                     </a>
                 @else
                     @if ($user->requested_to(auth()->id()))
                         <a href="{{ route('friend.accept', $user->id) }}">
-                            <button class="user-btn">&#10004;</button> 
+                            <button class="user-btn">قبول</button> 
                         </a>   
                     @else
                         <a href="{{ route('friend.send_request', $user->id) }}">
-                            <button class="user-btn">&#9757;</button>
+                            <button class="user-btn">درخواست</button>
                         </a>
                     @endif
                 @endif

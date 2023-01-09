@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/friend.css">
 </head>
 <body>
-    <a href="{{route('home') }}">بازگشت</a>
     <div class="form"> 
         <h2>دوستان</h2>
         <div class="searchbox">
@@ -16,13 +15,13 @@
                 @csrf
                 <input class="search" type="search" name="search" placeholder="   جستجو....">
                 <button class="search-btn" type="submit">
-                    Search
+                    &#128269;
                 </button>
             </form>
         </div>
         @if (isset($result))
             @if (!$result || $result==auth()->user())
-            <div class="notfound">not found</div>
+            <div class="notfound">یافت نشد</div>
             @else
             <div class="user">
                 <div class="chats">
@@ -57,7 +56,7 @@
             </div>
             @endif
         @endif
-        <br><br>لیست درخواست ها<br>
+        <br><br>لیست درخواست ها<br><br>
         @foreach ($senders as $s)
             <div class="chats">
                 <a class="chats" href="{{ route('show_profile', $s->id) }}">
@@ -66,10 +65,12 @@
                         <p class="name">{{ $s->name() }}</p>
                     </div>
                 </a>
-                <a href="{{ route('friend.deny', $s->id) }}"><button class="reject-btn">رد</button></a>
-                <a href="{{ route('friend.accept', $s->id) }}"><button class="accept-btn">قبول</button></a>
+                <a href="{{ route('friend.deny', $s->id) }}"><button class="reject-btn">&#10008;</button></a>
+                <a href="{{ route('friend.accept', $s->id) }}"><button class="accept-btn">&#10004;</button></a>
             </div>
         @endforeach
+        <br>
+        <a class="back-btn" href="{{route('home') }}">&#11148;</a>
     </div>
 </body>
 </html>

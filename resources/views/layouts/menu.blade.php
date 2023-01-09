@@ -42,10 +42,11 @@
                         
                             @if ($u->last_message(auth()->id()))
                                 @if (!$u->is_user() || $u != auth()->user())
+                                <div class="last-mag-box">
                                 <div class="lastmassageandsender">
-                                    @if (!$u->last_message(auth()->id())->is_sender(auth()->id()) && $u->last_message(auth()->id())->seen == false)
+                                    {{-- @if (!$u->last_message(auth()->id())->is_sender(auth()->id()) && $u->last_message(auth()->id())->seen == false)
                                         <div class="unread"></div>
-                                    @endif
+                                    @endif --}}
                                     @if (!$u->is_user()) 
                                         @if (!$u->last_message(auth()->id())->is_sender(auth()->id()))
                                             <div class="sendername">{{ $u->last_message(auth()->id())->sender()->name() }}: </div>
@@ -54,6 +55,10 @@
                                         @endif
                                     @endif
                                     <div class="lastmassage">{{ $u->last_message(auth()->id())->body() }}</div>
+                                </div>
+                                @if (!$u->last_message(auth()->id())->is_sender(auth()->id()) && $u->last_message(auth()->id())->seen == false)
+                                    <div class="unread"></div>
+                                 @endif
                                 </div>
                                 @endif
                             @endif
@@ -64,8 +69,7 @@
             </div>
             <input type="checkbox" id="hambergur-toggle">
             <label for="hambergur-toggle" class="hambergur">
-                <span class="bar one"></span>
-                <span class="bar two"></span>
+                <div class="cross"> &#10006; </div>
             </label>
             <a class="firend" href="{{ route('friend.index') }}">
                 دوست

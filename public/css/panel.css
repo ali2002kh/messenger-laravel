@@ -73,7 +73,7 @@ a{
     text-align: center;
 }
 .chats:hover{
-    background-color: #28274b;
+    background-color: #2d2c55;
 }
 
 .menu .name{
@@ -206,6 +206,7 @@ textarea:focus{
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 95%;
 }
 .unread{
     width: 10px;
@@ -231,7 +232,9 @@ textarea:focus{
 }
 .groups{
     align-items: center;
-    background-color: transparent;
+    border-radius: 10px;
+    transition-duration: 0.5s;
+    width: MAX-CONTENT;
 }
 .user-img{
     width: 20px !important;
@@ -269,6 +272,7 @@ textarea:focus{
 }
 .unread{
     margin: 5px;
+    margin-top: 7px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -287,22 +291,16 @@ textarea:focus{
   margin-left: 5px;
 }
 .hambergur{
+    transform: rotate(45deg);
     display: grid;
     position: fixed;
     bottom: 20px;
     left: 20px;
     background-color: #21203e;
     border-radius: 50%;
-    height: 30px;
-    width: 30px;
+    padding: 3px;
     cursor:pointer;
     transition: 0.5s;
-}
-.two{
-    transform: rotate(90deg);
-}
-.one{
-    transform: translateY(14px);
 }
 #hambergur-toggle{
     scale: 0;
@@ -332,7 +330,7 @@ textarea:focus{
     transition-duration: 0.5s;
 }
 #hambergur-toggle:checked ~ .hambergur{
-    transform: rotate(45deg);
+    transform: rotate(0);
 }
 #hambergur-toggle:checked{
     all: unset;
@@ -340,3 +338,10 @@ textarea:focus{
   a#prf{
     border-radius: 10px;
   }
+  .cross{
+    color: #8883f8;
+    padding: 0 5px 1px 5px;
+}
+.last-mag-box{
+    display: flex;
+}

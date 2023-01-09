@@ -32,7 +32,7 @@
             @endif
             <form action="{{ route('clear', $target->id) }}" method='Post'>
                 @csrf
-                <button style="scale:1.5 " type='submit'>🗑</button>
+                <button type='submit'>پاک کردن</button>
             </form>
             <a style="scale:1.5 " href="{{ route('home') }}"><button>&#11148;</button></a>
         </h3>
