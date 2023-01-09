@@ -12,9 +12,9 @@
         <div class="menu">
             <div class="head">
                 <h3 class="header">
-                    Nili
+                    نیلی
                     <a href="{{ route('show_profile', auth()->id()) }}">{{auth()->user()->username}}</a>
-                    <a href="{{ route('logout') }}"><button>Log Out</button></a>
+                    <a href="{{ route('logout') }}"><button>خارج شدن</button></a>
                 </h3>
                 
             </div>
@@ -35,7 +35,7 @@
                         <div class="nameandlastmassage">
 
                             @if ($u->is_user() && $u == auth()->user())
-                            <p class="name">Saved Messages</p><br>
+                            <p class="name">پیام های ذخیره شده</p><br>
                             @else
                                 <p class="name">{{ $u->name() }}</p><br>
                             @endif
@@ -50,7 +50,7 @@
                                         @if (!$u->last_message(auth()->id())->is_sender(auth()->id()))
                                             <div class="sendername">{{ $u->last_message(auth()->id())->sender()->name() }}: </div>
                                         @else
-                                            <div class="sendername">you: </div>
+                                            <div class="sendername">شما: </div>
                                         @endif
                                     @endif
                                     <div class="lastmassage">{{ $u->last_message(auth()->id())->body() }}</div>
@@ -62,11 +62,16 @@
                     </a>
                 @endforeach   
             </div>
+            <input type="checkbox" id="hambergur-toggle">
+            <label for="hambergur-toggle" class="hambergur">
+                <span class="bar one"></span>
+                <span class="bar two"></span>
+            </label>
             <a class="firend" href="{{ route('friend.index') }}">
-                friends
+                دوست
             </a>
             <a class="group" href="{{ route('group.create') }}">
-                new group
+                ایجاد گروه
             </a>
         </div>
         <div class="chat">

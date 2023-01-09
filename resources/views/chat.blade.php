@@ -22,7 +22,7 @@
             @if ($target == auth()->user())
             <a class="chats" id="prf">
                 <img src="{{ asset('storage/img/saved-messages.jpg') }}" alt="profile">
-                <p class="name">Saved Messages</p>
+                <p class="name">پیام های ذخیره شده</p>
             </a>
             @else
             <a class="chats" id="prf" href="{{ route('show_profile', $target->id) }}">
@@ -32,9 +32,9 @@
             @endif
             <form action="{{ route('clear', $target->id) }}" method='Post'>
                 @csrf
-                <button type='submit'>Clear</button>
+                <button style="scale:1.5 " type='submit'>🗑</button>
             </form>
-            <a href="{{ route('home') }}"><button>Back</button></a>
+            <a style="scale:1.5 " href="{{ route('home') }}"><button>&#11148;</button></a>
         </h3>
     </div>
     @foreach ($messages as $m) 
@@ -42,7 +42,7 @@
         <div class="massage self">
             <form class="delete" action="{{ route('delete_message', $m->id) }}" method='Post'>
                 @csrf
-                <input class="delete-btn" type='submit' value="x">
+                <input class="delete-btn" type='submit' value="&#10008;">
             </form>
             {{ $m->body() }}
         </div>
@@ -54,8 +54,8 @@
     @endforeach
 <form class="msgbox" id="myForm" action="{{ route('send_message', $target->id) }}" method='Post'>
     @csrf
-    <textarea id="txt" name='body' placeholder='type your message...'></textarea>
-    <input class="send" type='button' value="send" onclick="sendAndDelete()">
+    <textarea id="txt" name='body' placeholder='...پیام خود را بنویسید'></textarea>
+    <input style="scale: 1.6" class="send" type='button' value="&#10148;" onclick="sendAndDelete()">
 </form>
 
 <script>

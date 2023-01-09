@@ -130,24 +130,28 @@ button:hover{
     text-overflow: ellipsis;
 }
 .firend{
+    scale: 0;
     background-color:#28274b;
     border-radius: 15px;
     font-weight: normal;
     position:fixed;
-    bottom: 10px;
-    left: 10px;
+    bottom: 0px;
+    left: 0px;
     padding: 10px;
     cursor: pointer;
+    transition-duration: 0.5s;
 }
 .group{
+    scale: 0;
     background-color:#28274b;
     border-radius: 15px;
     font-weight: normal;
     position:fixed;
-    bottom: 60px;
-    left: 10px;
+    bottom: 0px;
+    left: 0px;
     padding: 10px;
     cursor: pointer;
+    transition-duration: 0.5s;
 }
 .unread{
     margin: 5px;
@@ -156,3 +160,66 @@ button:hover{
     border-radius: 50%;
     background-color: #8883f8;
 }
+.group:hover,.firend:hover{
+    color: #a8a8f2;
+}
+.hambergur .bar {
+  display: inline-block;
+  width: 21px;
+  height: 3px;
+  background-color: #8888f1;
+  position: relative;
+  transition: 0.5s;
+  margin-left: 5px;
+}
+.hambergur{
+    display: grid;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #21203e;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    cursor:pointer;
+    transition: 0.5s;
+}
+.two{
+    transform: rotate(90deg);
+}
+.one{
+    transform: translateY(14px);
+}
+#hambergur-toggle{
+    scale: 0;
+}
+#hambergur-toggle:checked ~ .group{
+    scale:1;
+    background-color:#28274b;
+    border-radius: 15px;
+    font-weight: normal;
+    position:fixed;
+    bottom: 100px;
+    left: 15px;
+    padding: 10px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+#hambergur-toggle:checked ~ .firend{
+    scale: 1;
+    background-color:#28274b;
+    border-radius: 15px;
+    font-weight: normal;
+    position:fixed;
+    bottom: 55px;
+    left: 15px;
+    padding: 10px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+#hambergur-toggle:checked ~ .hambergur{
+    transform: rotate(45deg);
+}
+#hambergur-toggle:checked{
+    all: unset;
+  }
