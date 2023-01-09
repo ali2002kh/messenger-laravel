@@ -56,19 +56,24 @@
             </div>
             @endif
         @endif
-        <br><br>لیست درخواست ها<br><br>
-        @foreach ($senders as $s)
-            <div class="chats">
-                <a class="chats" href="{{ route('show_profile', $s->id) }}">
-                    <img src="{{ asset('storage/profile/'.$s->profile->image) }}" alt="profile">
-                    <div class="nameandlastmassage">
-                        <p class="name">{{ $s->name() }}</p>
-                    </div>
-                </a>
-                <a href="{{ route('friend.deny', $s->id) }}"><button class="reject-btn">&#10008;</button></a>
-                <a href="{{ route('friend.accept', $s->id) }}"><button class="accept-btn">&#10004;</button></a>
-            </div>
-        @endforeach
+        @if($senders)
+            <br><br>لیست درخواست ها<br><br>
+            @foreach ($senders as $s)
+                <div class="chats">
+                    <a class="chats" href="{{ route('show_profile', $s->id) }}">
+                        <img src="{{ asset('storage/profile/'.$s->profile->image) }}" alt="profile">
+                        <div class="nameandlastmassage">
+                            <p class="name">{{ $s->name() }}</p>
+                        </div>
+                    </a>
+                    <a href="{{ route('friend.deny', $s->id) }}"><button class="reject-btn">&#10008;</button></a>
+                    <a href="{{ route('friend.accept', $s->id) }}"><button class="accept-btn">&#10004;</button></a>
+                </div>
+            @endforeach
+        @else
+            <br><br>درخواستی ندارید<br><br>
+        @endif
+        
         <br>
         <a class="back-btn" href="{{route('home') }}">&#11148;</a>
     </div>
