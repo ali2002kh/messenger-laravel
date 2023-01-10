@@ -78,7 +78,7 @@
                 ایجاد گروه
             </a>
         </div>
-        <div class="chat">
+        <div id="chatpage" class="chat">
             @yield('chat')
         </div>
     @yield('end')

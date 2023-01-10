@@ -7,33 +7,52 @@
 @media screen and (max-width: 1000px){
     .form{
         display: block !important;
+        width: 80% !important;
+        margin-left: 7% !important;
     }
     .info{
         margin-left: 25%;
         margin-right: 25%;
     }
+    .members{
+        width: 90%;
+        margin-left: 5%;
+    }
 }
 @media screen and (min-width: 1000px){
+    body{
+        height: 100%;
+    }
     .info{
         width: 40%;
     }
     .form{
         justify-content: space-around;
-        height: 400px;
+        height: 70%;
     }
+    .members{
+        height: inherit;
+        width: 40%;
+        overflow:auto;
+        overflow-x: hidden;
+        align-items: center
+        }
 }
 body{
     background-color: #151525;
 }
 
 .form{
+    width: 55%;
     background-color: rgba(255, 255, 255, 0.1);
     position: absolute;
-    transform: translate(-50%,-50%);
+    /* transform: translate(-50%,-50%);
     top: 50%;
     left: 50%;
-    width: 60%;
+    width: 60%; */
     /* max-width: fit-content; */
+    margin-left: 20%;
+    margin-top: 7%;
     border-radius: 10px;
     backdrop-filter: blur(5px);
     border: 2px solid rgba(255,255,255,0.1);
@@ -194,4 +213,7 @@ h5{
     color: #b40f0f;
     background-color: #17172b;
     transition-duration: 0.5s;
+}
+.members{
+    min-height: fit-content;
 }

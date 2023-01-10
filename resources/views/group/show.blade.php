@@ -9,8 +9,28 @@
 </head>
 <body>
     <div class="form">
-        <img src="{{ asset('storage/group/'.$group->image) }}"><br><br>
-        <div class="info">اعضای گروه
+        
+        <div class="info">
+            <img src="{{ asset('storage/group/'.$group->image) }}">
+            <br>
+            تنظیمات گروه
+            <a href={{ route('group.leave', $group->id) }}>
+                @if (auth()->user()->is_owner($group->id))
+                    حذف گروه
+                @else
+                    ترک گروه
+                @endif
+            </a>
+            @if (auth()->user()->is_owner($group->id))
+                <a href={{ route('group.add_page', $group->id) }}>افزودن عضو</a>
+            @endif
+            @if (auth()->user()->is_owner($group->id))
+                <a href={{ route('group.edit', $group->id) }}>&#9998;</a>
+            @endif
+            <a href="{{ route('group.chat', $group->id) }}">&#11148;</a>
+        </div>
+        <div class="members">
+        اعضای گروه
             @foreach ($members as $u)
             {{-- <div class="chats">
                 <a class="chats" href="{{ route('show_profile', $s->id) }}">
@@ -33,7 +53,7 @@
                     <p class="name">{{ $u->name() }}</p>
                 </a>
                 @if (!$u->is_owner($group->id) && auth()->user()->is_owner($group->id))
-                    <a class="remove-btn" href={{ route('group.remove', [$group->id, $u->id]) }}>&#10008;</a>
+                    <a class="remove-btn" href={{ route('group.remove', [$group->id, $u->id]) }}>حذف</a>
                 @endif
                 </div>
                 {{-- <div class="member">{{ $u->name() }}
@@ -42,23 +62,7 @@
                     @endif
                 </div> --}}
             @endforeach
-            <br>
-            تنظیمات گروه
-            <a href={{ route('group.leave', $group->id) }}>
-                @if (auth()->user()->is_owner($group->id))
-                    حذف گروه
-                @else
-                    ترک گروه
-                @endif
-            </a>
-            @if (auth()->user()->is_owner($group->id))
-                <a href={{ route('group.edit', $group->id) }}>&#9998;</a>
-            @endif
-            @if (auth()->user()->is_owner($group->id))
-                <a href={{ route('group.add_page', $group->id) }}>&#43;</a>
-            @endif
-            <a href="{{ route('group.chat', $group->id) }}">&#11148;</a>
-        </div>
+            </div>
     </div>
 </body>
 </html>

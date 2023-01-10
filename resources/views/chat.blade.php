@@ -17,6 +17,7 @@
 @endsection
 
 @section('chat')
+{{-- <div id="chatpage"> --}}
     <div class="head">
         <h3 class="header">
             @if ($target == auth()->user())
@@ -57,6 +58,7 @@
     <textarea id="txt" name='body' placeholder='...پیام خود را بنویسید'></textarea>
     <input style="scale: 1.6" class="send" type='button' value="&#10148;" onclick="sendAndDelete()">
 </form>
+{{-- </div> --}}
 
 <script>
     // var txt = document.getElementById('txt')
@@ -100,5 +102,7 @@
             document.getElementById('myForm').submit()
         }
     }
+    var objDiv = document.getElementById("chatpage");
+    objDiv.scrollTop = objDiv.scrollHeight;
 </script>
 @endsection

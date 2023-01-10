@@ -111,6 +111,7 @@ button:hover{
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
 }
 .lastmassage{
     display: inline;
@@ -128,7 +129,7 @@ button:hover{
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 95%;
+    max-width: 92%;
 }
 .firend{
     scale: 0;
@@ -157,8 +158,8 @@ button:hover{
 .unread{
     margin: 5px;
     margin-top: 7px;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background-color: #8883f8;
 }
@@ -216,4 +217,5 @@ button:hover{
 }
 .last-mag-box{
     display: flex;
+    justify-content: space-between;
 }

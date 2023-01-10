@@ -84,7 +84,8 @@ a{
 }
 
 .chatlist{
-    background-color:#8888f1
+    background-color:#8888f1;
+    margin-top: 55px;
 }
 
 button{
@@ -106,8 +107,9 @@ button:hover{
 
 .chat{
     text-decoration: none;
-    height: 95%;
+    height: 83.5%;
     overflow: auto;
+    margin-top: 80px;
 }
 
 .massage{
@@ -190,6 +192,7 @@ textarea:focus{
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
 }
 .lastmassage{
     display: inline;
@@ -206,7 +209,7 @@ textarea:focus{
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 95%;
+    max-width: 92%;
 }
 .unread{
     width: 10px;
@@ -273,8 +276,8 @@ textarea:focus{
 .unread{
     margin: 5px;
     margin-top: 7px;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background-color: #8883f8;
 }
@@ -344,4 +347,10 @@ textarea:focus{
 }
 .last-mag-box{
     display: flex;
+    justify-content: space-between;
+}
+.head{
+    position:fixed;
+    top: 0;
+    width: 50%;
 }
