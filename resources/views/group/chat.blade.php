@@ -35,11 +35,11 @@
     @foreach ($messages as $m) 
         @if ($m->is_sender(auth()->id()))
         <div class="massage self">
+            <p>{!! nl2br($m->body()) !!}</p>
             <form class="delete" action="{{ route('group.delete_message', $m->id) }}" method='Post'>
                 @csrf
                 <input class="delete-btn" type='submit' value="&#10008;">
             </form>
-            {{ $m->body() }}
         </div>
         @else 
         <div class="massage other">
@@ -48,7 +48,7 @@
                 <p class="name">{{ $m->sender()->name() }}</p>
             </a>
             <div>
-                {{ $m->body() }}
+                <p>{!! nl2br($m->body()) !!}</p>
             </div>
         </div>
         @endif
