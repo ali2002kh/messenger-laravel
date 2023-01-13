@@ -11,8 +11,8 @@
         margin-left: 7% !important;
     }
     .info{
-        margin-left: 25%;
-        margin-right: 25%;
+        margin-left: 20%;
+        margin-right: 20%;
     }
     .members{
         width: 90%;
@@ -142,6 +142,7 @@ a{
     display: block;
     margin: 10px;
     color:#8883f8;
+    padding: 2px;
 }
 ::-webkit-scrollbar-track
 {
@@ -216,4 +217,8 @@ h5{
 }
 .members{
     min-height: fit-content;
+}
+.setting{
+    display: grid;
+    grid-template-columns: 70% 30%;
 }

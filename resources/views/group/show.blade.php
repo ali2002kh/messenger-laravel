@@ -12,8 +12,15 @@
         
         <div class="info">
             <img src="{{ asset('storage/group/'.$group->image) }}">
-            <br>
+            <br><br>
             تنظیمات گروه
+            <div class="setting">
+            @if (auth()->user()->is_owner($group->id))
+                <a href={{ route('group.add_page', $group->id) }}>افزودن عضو</a>
+            @endif
+            @if (auth()->user()->is_owner($group->id))
+                <a href={{ route('group.edit', $group->id) }}>&#9998;</a>
+            @endif
             <a href={{ route('group.leave', $group->id) }}>
                 @if (auth()->user()->is_owner($group->id))
                     حذف گروه
@@ -21,15 +28,10 @@
                     ترک گروه
                 @endif
             </a>
-            @if (auth()->user()->is_owner($group->id))
-                <a href={{ route('group.add_page', $group->id) }}>افزودن عضو</a>
-            @endif
-            @if (auth()->user()->is_owner($group->id))
-                <a href={{ route('group.edit', $group->id) }}>&#9998;</a>
-            @endif
             <a href="{{ route('group.chat', $group->id) }}">&#11148;</a>
+            </div>
         </div>
-        <div class="members">
+        <div class="members"><br>
         اعضای گروه
             @foreach ($members as $u)
             {{-- <div class="chats">

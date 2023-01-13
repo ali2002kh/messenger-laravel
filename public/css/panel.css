@@ -43,6 +43,9 @@ a{
     .hambergur{
         scale: 0;
     }
+    .head{
+        width: 100% !important;
+    }
 }
 
 .header {
@@ -124,11 +127,12 @@ button:hover{
     word-break: break-all;
 }
 .self{
-    background-color: #17172b;
+    background-color: #1b1b33;
     /* position: absolute;
     right: 20px; */
     margin-left: auto;
     /* max-width: 40%; */
+    display: flex;
 }
 ::-webkit-scrollbar-track
 {
