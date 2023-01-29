@@ -110,9 +110,9 @@ button:hover{
 
 .chat{
     text-decoration: none;
-    height: 83.5%;
     overflow: auto;
     margin-top: 80px;
+    margin-bottom: 50px;
 }
 
 .massage{
@@ -357,4 +357,11 @@ textarea:focus{
     position:fixed;
     top: 0;
     width: 50%;
+}
+.mymsg{
+    display: block;
+}
+.seen{
+    text-align: right;
+    font-size: x-small;
 }

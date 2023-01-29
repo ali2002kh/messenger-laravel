@@ -45,7 +45,13 @@
                 @csrf
                 <input class="delete-btn" type='submit' value="&#10008;">
             </form>
+            <div class="mymsg">
             <p>{!! nl2br($m->body()) !!}</p>
+            @if ($m->seen == true)
+                <div class="seen">&#10004;</div>
+            @endif
+            </div>
+            
         </div>
         @else 
         <div class="massage other">
