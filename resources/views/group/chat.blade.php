@@ -41,9 +41,12 @@
             </form>
             <div class="mymsg">
             <p>{!! nl2br($m->body()) !!}</p>
-            @if ($m->seen == true)
-                <div class="seen">&#10004;</div>
-            @endif
+            <div class="clock">
+                <div>1:10</div>
+                @if ($m->seen == true)
+                    <div>&#10004;</div>
+                @endif
+            </div>
             </div>
         </div>
         @else 
@@ -54,6 +57,9 @@
             </a>
             <div>
                 <p>{!! nl2br($m->body()) !!}</p>
+                <div class="clock">
+                    <div>1:10</div>
+                </div>
             </div>
         </div>
         @endif

@@ -361,7 +361,9 @@ textarea:focus{
 .mymsg{
     display: block;
 }
-.seen{
+.clock{
     text-align: right;
     font-size: x-small;
+    display: flex;
+    justify-content: space-between;
 }

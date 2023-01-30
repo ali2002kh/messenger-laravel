@@ -10,6 +10,7 @@
     }
     .name , .bio , .username{
         margin-left: 20%;
+        min-width: auto !important;
         width: 60%;
     }
 }
